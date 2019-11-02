@@ -8,28 +8,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainGame.MainMenu">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0">
          <image>
             <Image url="@../main/resources/mainmenu.jpg" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" layoutX="299.0" layoutY="457.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="210.0" rotate="-10.0" text="LOAD GAME" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Button fx:id="loadgame_btn" alignment="CENTER" layoutX="299.0" layoutY="457.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="210.0" rotate="-10.0" stylesheets="@../main/resources/styles/styles.css" text="LOAD GAME" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
-            <Font name="Turtles" size="31.0" />
+            <Font name="Turtles" size="27.0" />
          </font></Button>
-      <Button alignment="CENTER" layoutX="277.0" layoutY="343.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="210.0" rotate="-7.0" text="play game" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Button fx:id="playgame_btn" alignment="CENTER" layoutX="270.0" layoutY="344.0" mnemonicParsing="false" onAction="#PlayGameBtnAction" prefHeight="91.0" prefWidth="226.0" rotate="-7.0" stylesheets="@../main/resources/styles/styles.css" text="play game" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
-            <Font name="Turtles" size="44.0" />
+            <Font name="Turtles" size="36.0" />
          </font>
       </Button>
-      <Button alignment="TOP_CENTER" layoutX="521.0" layoutY="379.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="163.0" rotate="-13.0" text="choose level" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+      <Button fx:id="chooselevel_btn" alignment="TOP_CENTER" graphicTextGap="2.0" layoutX="521.0" layoutY="379.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="163.0" rotate="-13.0" stylesheets="@../main/resources/styles/styles.css" text="choose level" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
-            <Font name="Turtles" size="30.0" />
+            <Font name="Turtles" size="24.0" />
          </font>
       </Button>
-      <Button alignment="TOP_CENTER" layoutX="912.0" layoutY="428.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="144.0" rotate="3.0" text="exit" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+      <Button fx:id="exit_btn" alignment="TOP_CENTER" layoutX="908.0" layoutY="410.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="144.0" rotate="3.0" stylesheets="@../main/resources/styles/styles.css" text="exit" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="Turtles" size="38.0" />
          </font>
