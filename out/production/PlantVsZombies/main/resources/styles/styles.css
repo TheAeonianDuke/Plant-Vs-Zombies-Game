@@ -153,7 +153,7 @@
 
 .sidebar-button-6:hover {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 20, 0, 0, 0);
-    -fx-border-color: orange ;
+    /*-fx-border-color: orange ;*/
     -fx-border-width: 5 ;
     /*-fx-background-color: transparent;*/
     -fx-scale-y: 1.0;
@@ -161,7 +161,7 @@
 
 .sidebar-button-6:pressed {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 20, 0, 0, 0);
-    -fx-border-color: green ;
+    /*-fx-border-color: green ;*/
     -fx-border-width: 5 ;
     /*-fx-background-color: transparent;*/
     -fx-scale-y: 0.95;
@@ -200,7 +200,7 @@
 /*Save_Game  CSS*/
 
 .savegame-button {
-    
+
     -fx-background-image: url("../save_game.png");
     -fx-scale-y: 1.05;
 }

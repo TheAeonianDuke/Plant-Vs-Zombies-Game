@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -28,6 +29,9 @@ public class LawnController implements Initializable
 
     @FXML
     private Pane Lawn;
+
+    @FXML
+    private ProgressBar ZombieProgress;
 
     @FXML
     private Button exit_to_menu;
@@ -73,17 +77,20 @@ public class LawnController implements Initializable
 
         movezombie = new TranslateTransition(Duration.seconds(8),Zombie);
         movezombie.setToX(Zombie.getLayoutX() - 2280);
-//        System.out.println(Zombie.getLayoutX()+" "+ LawnMower0.getLayoutX());
         movezombie.setCycleCount(1);
         movezombie.play();
+
         movezombie.setOnFinished(new EventHandler<ActionEvent>(){
 
             @Override
             public void handle(ActionEvent arg0) {
                 Zombie.setVisible(false);
                 triggerLawnMower();
+                System.out.println(Zombie.getLayoutX()+" "+ LawnMower0.getLayoutX());
             }
         });
+
+
 //
 
     }
@@ -109,6 +116,8 @@ public class LawnController implements Initializable
     }
 
 
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -116,6 +125,7 @@ public class LawnController implements Initializable
         shootPea();
         FallSun();
         triggerLawnMower();
+
     }
 
 
