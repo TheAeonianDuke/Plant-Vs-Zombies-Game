@@ -26,6 +26,11 @@
       </ImageView>
         <AnchorPane id="plantPanel" layoutX="-4.0" layoutY="-2.0" prefHeight="722.0" prefWidth="224.0">
          <children>
+            <ImageView fitHeight="590.0" fitWidth="252.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../main/resources/sidebar.png" />
+               </image>
+            </ImageView>
             <Button id="panel_sunflower_btn" layoutX="23.0" layoutY="151.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-1" stylesheets="@../main/resources/styles/styles.css" />
             <Button id="panel_sunflower_btn" layoutX="23.0" layoutY="264.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-2" stylesheets="@../main/resources/styles/styles.css" />
             <Button id="panel_sunflower_btn" layoutX="23.0" layoutY="378.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="138.0" styleClass="sidebar-button-3" stylesheets="@../main/resources/styles/styles.css" />
@@ -156,7 +161,13 @@
       </AnchorPane>
       <StackPane fx:id="menu_panel" layoutX="450.0" layoutY="55.0" prefHeight="547.0" prefWidth="468.0" styleClass="menu_panel" stylesheets="@../main/resources/styles/styles.css" visible="false">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="119.0" layoutY="169.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="230.0" styleClass="savegame-button" stylesheets="@../main/resources/styles/styles.css" />
+                  <Button fx:id="exit_to_menu" layoutX="119.0" layoutY="339.0" mnemonicParsing="false" onAction="#ExitToMenu" prefHeight="42.0" prefWidth="230.0" styleClass="exit-button" stylesheets="@../main/resources/styles/styles.css" />
+                  <Button layoutX="119.0" layoutY="253.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="230.0" styleClass="restart-button" stylesheets="@../main/resources/styles/styles.css" />
+                  <Button fx:id="return_game" layoutX="46.0" layoutY="441.0" mnemonicParsing="false" onAction="#ReturnGame" prefHeight="77.0" prefWidth="376.0" styleClass="return-button" stylesheets="@../main/resources/styles/styles.css" />
+               </children></AnchorPane>
          </children>
       </StackPane>
     </children>

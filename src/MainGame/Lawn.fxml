@@ -161,7 +161,13 @@
       </AnchorPane>
       <StackPane fx:id="menu_panel" layoutX="450.0" layoutY="55.0" prefHeight="547.0" prefWidth="468.0" styleClass="menu_panel" stylesheets="@../main/resources/styles/styles.css" visible="false">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="119.0" layoutY="169.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="230.0" styleClass="savegame-button" stylesheets="@../main/resources/styles/styles.css" />
+                  <Button fx:id="exit_to_menu" layoutX="119.0" layoutY="339.0" mnemonicParsing="false" onAction="#ExitToMenu" prefHeight="42.0" prefWidth="230.0" styleClass="exit-button" stylesheets="@../main/resources/styles/styles.css" />
+                  <Button layoutX="119.0" layoutY="253.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="230.0" styleClass="restart-button" stylesheets="@../main/resources/styles/styles.css" />
+                  <Button fx:id="return_game" layoutX="46.0" layoutY="441.0" mnemonicParsing="false" onAction="#ReturnGame" prefHeight="77.0" prefWidth="376.0" styleClass="return-button" stylesheets="@../main/resources/styles/styles.css" />
+               </children></AnchorPane>
          </children>
       </StackPane>
     </children>
