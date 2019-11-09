@@ -15,11 +15,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -28,6 +31,7 @@ public class LawnController implements Initializable {
     TranslateTransition movezombie;
     TranslateTransition movesun;
     TranslateTransition movepea;
+    TranslateTransition collectsun;
 
     @FXML
     private Pane Lawn;
@@ -53,6 +57,9 @@ public class LawnController implements Initializable {
     @FXML
     private ImageView LawnMower0;
 
+    @FXML
+    private Text SunCounter;
+
     // Tile Panes Init //
     @FXML
     private AnchorPane tile00, tile01,tile02,tile03,tile04,
@@ -65,16 +72,18 @@ public class LawnController implements Initializable {
                         tile70,tile71,tile72,tile73,tile74,
                         tile80,tile81,tile82,tile83,tile84;
 
-    @FXML
-    private Pane TilePanes[]= {tile00, tile01,tile02,tile03,tile04,
-                                tile10,tile11,tile12,tile13,tile14,
-                                tile20,tile21,tile22,tile23,tile24,
-                                tile30,tile31,tile32,tile33,tile34,
-                                tile40,tile41,tile42,tile43,tile44,
-                                tile50,tile51,tile52,tile53,tile54,
-                                tile60,tile61,tile62,tile63,tile64,
-                                tile70,tile71,tile72,tile73,tile74,
-                                tile80,tile81,tile82,tile83,tile84};
+//    private List<AnchorPane> panes= Arrays.asList(tile00, tile01,tile02,tile03,tile04,
+//                                tile10,tile11,tile12,tile13,tile14,
+//                                tile20,tile21,tile22,tile23,tile24,
+//                                tile30,tile31,tile32,tile33,tile34,
+//                                tile40,tile41,tile42,tile43,tile44,
+//                                tile50,tile51,tile52,tile53,tile54,
+//                                tile60,tile61,tile62,tile63,tile64,
+//                                tile70,tile71,tile72,tile73,tile74,
+//                                tile80,tile81,tile82,tile83,tile84);
+
+    private AnchorPane TilePanes[];
+
 
     public LawnController() {
     }
@@ -195,6 +204,8 @@ public class LawnController implements Initializable {
                     peashooter_anim.setLayoutY(tile.getLayoutY() + 15);
                     Pea.setLayoutX(tile.getLayoutX() + 25);
                     Pea.setLayoutY(tile.getLayoutY() + 15);
+                    tile.setOpacity(1);
+                    tile.setStyle("-fx-background-color: transparent");
                 }
             }
         });
@@ -202,6 +213,7 @@ public class LawnController implements Initializable {
         tile.setOnMouseDragExited(new EventHandler<MouseDragEvent>() {
             @Override
             public void handle(MouseDragEvent event) {
+                tile.setOpacity(1);
                 tile.setStyle("-fx-background-color: transparent");
             }
         });
@@ -222,6 +234,19 @@ public class LawnController implements Initializable {
         movepea.play();
     }
 
+    public void CollectSun(MouseEvent actionEvent)
+    {
+        collectsun = new TranslateTransition(Duration.seconds(4),FallSun);
+        collectsun.setToX(-304);
+        collectsun.setToY(50);
+        collectsun.play();
+        collectsun.setOnFinished(e ->
+        {
+            FallSun.setVisible(false);
+            SunCounter.setText(String.valueOf(Integer.parseInt(SunCounter.getText()) + 50));
+        });
+    }
+
 
     // Init //
 
@@ -231,9 +256,27 @@ public class LawnController implements Initializable {
         shootPea();
         FallSun();
         triggerLawnMower();
-        for (Pane i: TilePanes) {
-            DragOver(i);
-            DragElement(peashooter);
+        TilePanes = new AnchorPane[]{tile00, tile01, tile02, tile03, tile04,
+                tile10, tile11, tile12, tile13, tile14,
+                tile20, tile21, tile22, tile23, tile24,
+                tile30, tile31, tile32, tile33, tile34,
+                tile40, tile41, tile42, tile43, tile44,
+                tile50, tile51, tile52, tile53, tile54,
+                tile60, tile61, tile62, tile63, tile64,
+                tile70, tile71, tile72, tile73, tile74,
+                tile80, tile81, tile82, tile83, tile84};
+        for (int i =0 ; i<45; i++) {
+            try {
+                DragOver(TilePanes[i]);
+//                DragOver(tile22);
+            }
+            catch (Exception e)
+            {
+                System.out.println(i);
+            }
         }
+        DragElement(peashooter);
+
+
     }
 }
