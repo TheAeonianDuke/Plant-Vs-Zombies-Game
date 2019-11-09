@@ -44,9 +44,9 @@ public class MainMenuController
         System.out.println("Load Game");
     }
 
-    public void chooseLevel(ActionEvent actionEvent)
-    {
-        System.out.println("Choose Level");
+    public void chooseLevel(ActionEvent actionEvent) throws IOException {
+        Pane pane = FXMLLoader.load(getClass().getResource("ChooseLevel.fxml"));
+        mainMenu.getChildren().setAll(pane);
     }
 
     public void exitGame(ActionEvent actionEvent)
