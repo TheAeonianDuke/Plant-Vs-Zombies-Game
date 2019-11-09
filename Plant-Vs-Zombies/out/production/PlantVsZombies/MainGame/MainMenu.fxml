@@ -15,21 +15,21 @@
             <Image url="@../main/resources/mainmenu.jpg" />
          </image>
       </ImageView>
-      <Button id="loadButton" fx:id="loadButton" alignment="CENTER" layoutX="299.0" layoutY="457.0" mnemonicParsing="false" onAction="#loadGame" prefHeight="70.0" prefWidth="210.0" rotate="-10.0" text="LOAD GAME" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Button id="loadButton" fx:id="loadButton" alignment="CENTER" layoutX="299.0" layoutY="457.0" mnemonicParsing="false" onAction="#loadGame" prefHeight="70.0" prefWidth="210.0" rotate="-10.0" stylesheets="@../main/resources/styles/styles.css" text="LOAD GAME" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
-            <Font name="Turtles" size="31.0" />
+            <Font name="Turtles" size="29.0" />
          </font></Button>
-      <Button id="playButton" fx:id="playButton" alignment="CENTER" layoutX="277.0" layoutY="343.0" mnemonicParsing="false" onAction="#playGame" prefHeight="91.0" prefWidth="210.0" rotate="-7.0" text="play game" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Button id="playButton" fx:id="playButton" alignment="CENTER" layoutX="259.0" layoutY="328.0" mnemonicParsing="false" onAction="#playGame" prefHeight="109.0" prefWidth="247.0" rotate="-7.0" stylesheets="@../main/resources/styles/styles.css" text="play game" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
-            <Font name="Turtles" size="44.0" />
+            <Font name="Turtles" size="41.0" />
          </font>
       </Button>
-      <Button id="chooseButton" fx:id="chooseButton" alignment="TOP_CENTER" layoutX="521.0" layoutY="379.0" mnemonicParsing="false" onAction="#chooseLevel" prefHeight="90.0" prefWidth="163.0" rotate="-13.0" text="choose level" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+      <Button id="chooseButton" fx:id="chooseButton" alignment="TOP_LEFT" layoutX="523.0" layoutY="372.0" mnemonicParsing="false" onAction="#chooseLevel" prefHeight="101.0" prefWidth="165.0" rotate="-13.0" stylesheets="@../main/resources/styles/styles.css" text=" choose&#10; level" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
          <font>
-            <Font name="Turtles" size="30.0" />
+            <Font name="Turtles" size="27.0" />
          </font>
       </Button>
-      <Button id="exitButton" fx:id="exitButton" alignment="TOP_CENTER" layoutX="912.0" layoutY="428.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="46.0" prefWidth="144.0" rotate="3.0" text="exit" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+      <Button id="exitButton" fx:id="exitButton" alignment="TOP_CENTER" layoutX="907.0" layoutY="414.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="29.0" prefWidth="144.0" rotate="3.0" stylesheets="@../main/resources/styles/styles.css" text="exit" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="Turtles" size="38.0" />
          </font>

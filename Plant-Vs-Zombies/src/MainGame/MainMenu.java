@@ -20,6 +20,7 @@ public class MainMenu extends Application
         Scene mainMenu= new Scene(menuRoot);
         Scene splash=new Scene(splashRoot);
 
+        primaryStage.setResizable(false);
         primaryStage.setScene(splash);
         primaryStage.show();
         PauseTransition pause = new PauseTransition(Duration.seconds(3));
