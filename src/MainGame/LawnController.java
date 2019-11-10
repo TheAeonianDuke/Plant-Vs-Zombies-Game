@@ -42,6 +42,7 @@ public class LawnController implements Initializable {
     @FXML
     private ImageView peashooter_anim;
 
+
     @FXML
     private Pane menu_panel;
 
@@ -154,7 +155,7 @@ public class LawnController implements Initializable {
                 peashooter_anim.setLayoutY(event.getSceneY() - 10);
                 Pea.setLayoutX(event.getSceneX() - 10);
                 Pea.setLayoutY(event.getSceneY() - 10);
-                System.out.println("Mouse Pressed Detected!");
+//                System.out.println("Mouse Pressed Detected!");
                 event.consume();
             }
         });
@@ -166,7 +167,7 @@ public class LawnController implements Initializable {
                 peashooter_anim.setLayoutY(event.getSceneY() - 10);
                 Pea.setLayoutX(event.getSceneX() - 10);
                 Pea.setLayoutY(event.getSceneY() - 10);
-                System.out.println("Dragging Element Detected!");
+//                System.out.println("Dragging Element Detected!");
 
             }
         });
@@ -182,12 +183,12 @@ public class LawnController implements Initializable {
     }
 
     // Drag Over Tile Detection //
-    private void DragOver(Pane tile) {
+    private void DragOver(Pane tile, double peashooter_initX, double peashooter_initY) {
         tile.setOnMouseDragOver(new EventHandler<MouseDragEvent>() {
             @Override
             public void handle(MouseDragEvent event) {
-                if (event.getGestureSource() != tile) {
-                    System.out.println("over");
+                if (event.getGestureSource() != tile  ) {
+//                    System.out.println("over");
                     tile.setStyle("-fx-background-color: #3cb371; -fx-border-color: #ffff");
                     tile.setOpacity(0.5);
 //                    tile.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 20, 0, 0, 0)");
@@ -198,8 +199,8 @@ public class LawnController implements Initializable {
         tile.setOnMouseDragReleased(new EventHandler<MouseDragEvent>() {
             @Override
             public void handle(MouseDragEvent event) {
-                if (event.getGestureSource() != tile) {
-                    System.out.println("Released");
+                System.out.println(event.getSceneX());
+                if (event.getGestureSource() != tile && event.getSceneX()>290) {
                     peashooter_anim.setLayoutX(tile.getLayoutX() + 25);
                     peashooter_anim.setLayoutY(tile.getLayoutY() + 15);
                     Pea.setLayoutX(tile.getLayoutX() + 25);
@@ -207,6 +208,8 @@ public class LawnController implements Initializable {
                     tile.setOpacity(1);
                     tile.setStyle("-fx-background-color: transparent");
                 }
+
+
             }
         });
 
@@ -217,7 +220,21 @@ public class LawnController implements Initializable {
                 tile.setStyle("-fx-background-color: transparent");
             }
         });
+
+        Lawn.setOnMouseDragReleased(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                System.out.println("X"+event.getSceneX()+"Y"+event.getSceneY());
+                if(event.getSceneX()<306 || event.getSceneX()>1180 || event.getSceneY()>688 || event.getSceneY()<90 )
+                {
+                    peashooter_anim.setLayoutX(peashooter_initX);
+                    peashooter_anim.setLayoutY(peashooter_initY);
+                }
+            }
+        });
     }
+
+
 
     // Exit To Menu //
     public void ExitToMenu(ActionEvent actionEvent) throws IOException {
@@ -256,18 +273,20 @@ public class LawnController implements Initializable {
         shootPea();
         FallSun();
         triggerLawnMower();
+        double peashooter_initX=peashooter_anim.getLayoutX();
+        double peashooter_initY=peashooter_anim.getLayoutY();
         TilePanes = new AnchorPane[]{tile00, tile01, tile02, tile03, tile04,
-                tile10, tile11, tile12, tile13, tile14,
-                tile20, tile21, tile22, tile23, tile24,
-                tile30, tile31, tile32, tile33, tile34,
-                tile40, tile41, tile42, tile43, tile44,
-                tile50, tile51, tile52, tile53, tile54,
-                tile60, tile61, tile62, tile63, tile64,
-                tile70, tile71, tile72, tile73, tile74,
-                tile80, tile81, tile82, tile83, tile84};
+                                    tile10, tile11, tile12, tile13, tile14,
+                                    tile20, tile21, tile22, tile23, tile24,
+                                    tile30, tile31, tile32, tile33, tile34,
+                                    tile40, tile41, tile42, tile43, tile44,
+                                    tile50, tile51, tile52, tile53, tile54,
+                                    tile60, tile61, tile62, tile63, tile64,
+                                    tile70, tile71, tile72, tile73, tile74,
+                                    tile80, tile81, tile82, tile83, tile84};
         for (int i =0 ; i<45; i++) {
             try {
-                DragOver(TilePanes[i]);
+                DragOver(TilePanes[i], peashooter_initX,peashooter_initY);
 //                DragOver(tile22);
             }
             catch (Exception e)
