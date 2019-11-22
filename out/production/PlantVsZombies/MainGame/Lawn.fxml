@@ -36,28 +36,80 @@
          <children>
             <Button id="ingame_menu_btn" layoutX="3.0" layoutY="1.0" mnemonicParsing="false" onAction="#MenuBtn" prefHeight="43.0" prefWidth="121.0" styleClass="sidebar-button-5" stylesheets="@../main/resources/styles/styles.css" />
          </children></AnchorPane>
-        <AnchorPane id="sunPoints" layoutX="304.0" prefHeight="98.0" prefWidth="69.0">
+        <AnchorPane id="sunPoints" layoutX="304.0" prefHeight="92.0" prefWidth="61.0">
          <children>
-            <ImageView fitHeight="91.0" fitWidth="68.0" layoutX="4.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="81.0" fitWidth="61.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../main/resources/SunCounter.png" />
                </image>
             </ImageView>
-            <Text fx:id="SunCounter" layoutX="6.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="150" textAlignment="CENTER" wrappingWidth="54.76336665561428" />
+            <Text fx:id="SunCounter" layoutX="4.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="150" textAlignment="CENTER" wrappingWidth="54.76336665561428" />
          </children></AnchorPane>
-        <AnchorPane id="tile04" fx:id="tile04" layoutX="310.0" layoutY="90.0" prefHeight="123.0" prefWidth="94.0">
+        <ImageView id="lawnmowergif0" fx:id="LawnMower0" fitHeight="70.0" fitWidth="62.0" layoutX="225.0" layoutY="587.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../main/resources/lawn_mower.gif" />
+            </image>
+        </ImageView>
+        <ImageView id="lawnmowergif1" fitHeight="70.0" fitWidth="62.0" layoutX="233.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../main/resources/lawn_mower.gif" />
+            </image>
+        </ImageView>
+        <ImageView id="lawnmowergif2" fitHeight="70.0" fitWidth="62.0" layoutX="237.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../main/resources/lawn_mower.gif" />
+            </image>
+        </ImageView>
+        <ImageView id="lawnmowergif3" fitHeight="70.0" fitWidth="62.0" layoutX="236.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../main/resources/lawn_mower.gif" />
+            </image>
+        </ImageView>
+        <ImageView id="lawnmowergif4" fitHeight="58.0" fitWidth="68.0" layoutX="230.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../main/resources/lawn_mower.gif" />
+            </image>
+        </ImageView>
+      <AnchorPane id="Shovel" layoutX="947.0" layoutY="17.0" prefHeight="77.0" prefWidth="96.0">
          <children>
-            <ImageView fx:id="Pea" fitHeight="38.0" fitWidth="26.0" layoutX="35.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../main/resources/Pea.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="77.0" fitWidth="69.0" layoutX="13.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../main/resources/pea_shooter.gif" />
-               </image>
-            </ImageView>
+            <Button id="ingame_menu_btn" layoutX="32.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="69.0" styleClass="sidebar-button-6" stylesheets="@../main/resources/styles/styles.css" />
          </children></AnchorPane>
+      <ImageView id="FallSun" fx:id="FallSun" fitHeight="101.0" fitWidth="44.0" layoutX="615.0" layoutY="-54.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../main/resources/sun.gif" />
+         </image>
+      </ImageView>
+      <StackPane fx:id="menu_panel" layoutX="450.0" layoutY="55.0" prefHeight="547.0" prefWidth="468.0" styleClass="menu_panel" stylesheets="@../main/resources/styles/styles.css" visible="false">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="119.0" layoutY="169.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="230.0" styleClass="savegame-button" stylesheets="@../main/resources/styles/styles.css" />
+                  <Button fx:id="exit_to_menu" layoutX="119.0" layoutY="339.0" mnemonicParsing="false" onAction="#ExitToMenu" prefHeight="42.0" prefWidth="230.0" styleClass="exit-button" stylesheets="@../main/resources/styles/styles.css" />
+                  <Button layoutX="119.0" layoutY="253.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="230.0" styleClass="restart-button" stylesheets="@../main/resources/styles/styles.css" />
+                  <Button fx:id="return_game" layoutX="46.0" layoutY="441.0" mnemonicParsing="false" onAction="#ReturnGame" prefHeight="77.0" prefWidth="376.0" styleClass="return-button" stylesheets="@../main/resources/styles/styles.css" />
+               </children></AnchorPane>
+         </children>
+      </StackPane>
+      <AnchorPane layoutX="495.0" layoutY="23.0" prefHeight="53.0" prefWidth="376.0">
+         <children>
+            <ImageView fitHeight="53.0" fitWidth="376.0" layoutX="40.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../main/resources/ProgressBar.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="peashooter_anim" fitHeight="77.0" fitWidth="69.0" layoutX="-81.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../main/resources/pea_shooter.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Pea" fitHeight="38.0" fitWidth="26.0" layoutX="-59.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../main/resources/Pea.png" />
+         </image>
+      </ImageView>
+        <AnchorPane id="tile04" fx:id="tile04" layoutX="310.0" layoutY="90.0" prefHeight="123.0" prefWidth="94.0" />
         <AnchorPane id="tile14" fx:id="tile14" layoutX="410.0" layoutY="89.0" prefHeight="123.0" prefWidth="84.0" />
         <AnchorPane id="tile24" fx:id="tile24" layoutX="500.0" layoutY="86.0" prefHeight="122.0" prefWidth="96.0" />
         <AnchorPane id="tile34" fx:id="tile34" layoutX="600.0" layoutY="87.0" prefHeight="126.0" prefWidth="86.0" />
@@ -123,64 +175,5 @@
         <AnchorPane id="tile60" fx:id="tile60" layoutX="890.0" layoutY="576.0" prefHeight="118.0" prefWidth="93.0" />
         <AnchorPane id="tile70" fx:id="tile70" layoutX="990.0" layoutY="575.0" prefHeight="118.0" prefWidth="93.0" />
         <AnchorPane id="tile80" fx:id="tile80" layoutX="1089.0" layoutY="569.0" prefHeight="118.0" prefWidth="93.0" />
-        <ImageView id="lawnmowergif0" fx:id="LawnMower0" fitHeight="70.0" fitWidth="62.0" layoutX="225.0" layoutY="587.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../main/resources/lawn_mower.gif" />
-            </image>
-        </ImageView>
-        <ImageView id="lawnmowergif1" fitHeight="70.0" fitWidth="62.0" layoutX="233.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../main/resources/lawn_mower.gif" />
-            </image>
-        </ImageView>
-        <ImageView id="lawnmowergif2" fitHeight="70.0" fitWidth="62.0" layoutX="237.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../main/resources/lawn_mower.gif" />
-            </image>
-        </ImageView>
-        <ImageView id="lawnmowergif3" fitHeight="70.0" fitWidth="62.0" layoutX="236.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../main/resources/lawn_mower.gif" />
-            </image>
-        </ImageView>
-        <ImageView id="lawnmowergif4" fitHeight="58.0" fitWidth="68.0" layoutX="230.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../main/resources/lawn_mower.gif" />
-            </image>
-        </ImageView>
-      <AnchorPane id="Shovel" layoutX="947.0" layoutY="17.0" prefHeight="77.0" prefWidth="96.0">
-         <children>
-            <Button id="ingame_menu_btn" layoutX="32.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="69.0" styleClass="sidebar-button-6" stylesheets="@../main/resources/styles/styles.css" />
-         </children></AnchorPane>
-      <ImageView id="FallSun" fx:id="FallSun" fitHeight="101.0" fitWidth="44.0" layoutX="615.0" layoutY="-54.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../main/resources/sun.gif" />
-         </image>
-      </ImageView>
-      <StackPane fx:id="menu_panel" layoutX="450.0" layoutY="55.0" prefHeight="547.0" prefWidth="468.0" styleClass="menu_panel" stylesheets="@../main/resources/styles/styles.css" visible="false">
-         <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Button layoutX="119.0" layoutY="169.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="230.0" styleClass="savegame-button" stylesheets="@../main/resources/styles/styles.css" />
-                  <Button fx:id="exit_to_menu" layoutX="119.0" layoutY="339.0" mnemonicParsing="false" onAction="#ExitToMenu" prefHeight="42.0" prefWidth="230.0" styleClass="exit-button" stylesheets="@../main/resources/styles/styles.css" />
-                  <Button layoutX="119.0" layoutY="253.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="230.0" styleClass="restart-button" stylesheets="@../main/resources/styles/styles.css" />
-                  <Button fx:id="return_game" layoutX="46.0" layoutY="441.0" mnemonicParsing="false" onAction="#ReturnGame" prefHeight="77.0" prefWidth="376.0" styleClass="return-button" stylesheets="@../main/resources/styles/styles.css" />
-               </children></AnchorPane>
-         </children>
-      </StackPane>
-      <AnchorPane layoutX="495.0" layoutY="23.0" prefHeight="53.0" prefWidth="376.0">
-         <children>
-            <ImageView fitHeight="53.0" fitWidth="376.0" layoutX="40.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../main/resources/ProgressBar.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <ImageView fx:id="peashooter_anim" fitHeight="77.0" fitWidth="69.0" layoutX="-81.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../main/resources/pea_shooter.gif" />
-         </image>
-      </ImageView>
     </children>
 </Pane>

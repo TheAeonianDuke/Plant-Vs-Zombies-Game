@@ -2,6 +2,10 @@ package MainGame;
 
 import com.sun.jndi.toolkit.url.UrlUtil;
 import javafx.animation.TranslateTransition;
+import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableBooleanValue;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.Callable;
 
 public class LawnController implements Initializable {
     TranslateTransition movelawnmower;
@@ -111,25 +116,44 @@ public class LawnController implements Initializable {
     private void moveZombie() {
 
         movezombie = new TranslateTransition(Duration.seconds(8), Zombie);
-        movezombie.setToX(Zombie.getLayoutX() - 2280);
+        movezombie.setToX(Zombie.getLayoutX() - 3280);
         movezombie.setCycleCount(1);
         movezombie.play();
 
-        movezombie.setOnFinished(new EventHandler<ActionEvent>() {
-
+        ObservableBooleanValue collision= Bindings.createBooleanBinding(new Callable<Boolean>() {
             @Override
-            public void handle(ActionEvent arg0) {
-                Zombie.setVisible(false);
+            public Boolean call() throws Exception {
+                return LawnMower0.getBoundsInParent().intersects(Zombie.getBoundsInParent());
+            }
+        }, LawnMower0.boundsInParentProperty(),Zombie.boundsInParentProperty());
+
+        collision.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue)
+                {
+                    Zombie.setVisible(false);
                 triggerLawnMower();
                 System.out.println(Zombie.getLayoutX() + " " + LawnMower0.getLayoutX());
+                }
+                else{
+                    System.out.println("not colliding");
+                }
             }
         });
+//        movezombie.setOnFinished(new EventHandler<ActionEvent>() {
+//
+//            @Override
+//            public void handle(ActionEvent arg0) {
+//
+//            }
+//        });
     }
 
     // LawnMower Anim //
     private void triggerLawnMower() {
         movelawnmower = new TranslateTransition(Duration.seconds(3), LawnMower0);
-        movelawnmower.setDelay(Duration.millis(7900));
+//        movelawnmower.setDelay(Duration.millis(7900));
         movelawnmower.setToX(LawnMower0.getLayoutX() + 1000);
         movelawnmower.setCycleCount(1);
         movelawnmower.play();
@@ -272,7 +296,7 @@ public class LawnController implements Initializable {
         moveZombie();
         shootPea();
         FallSun();
-        triggerLawnMower();
+//        triggerLawnMower();
         double peashooter_initX=peashooter_anim.getLayoutX();
         double peashooter_initY=peashooter_anim.getLayoutY();
         TilePanes = new AnchorPane[]{tile00, tile01, tile02, tile03, tile04,
