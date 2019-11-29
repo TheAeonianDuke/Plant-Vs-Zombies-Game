@@ -19,18 +19,28 @@ public class GameInitializer implements Serializable
     private MainMenuController mainMenuController;
     private ChooseLevelController chooseLevelController;
     private ArrayList<Level> allLevels;
-//
-//    public GameInitializer()
-//    {
-//        userName = null;
-//        mainMenuController  = new MainMenuController(this);
-//        chooseLevelController = new ChooseLevelController(this);
-//        allLevels = new ArrayList<>();
-//    }
+
+    public GameInitializer(MainMenuController mainMenuController,ChooseLevelController chooseLevelController)
+    {
+        userName = null;
+        this.mainMenuController  = mainMenuController;
+        this.chooseLevelController = chooseLevelController;
+        allLevels = new ArrayList<>();
+
+    }
 
     public void setUserName(String userName)
     {
         this.userName = userName;
     }
+
+    public ArrayList<Level> getAllLevels() {
+        return allLevels;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
 
 }

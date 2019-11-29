@@ -8,15 +8,31 @@ public class Entity implements Serializable,Cloneable
     private int hitValue;
     private double health;
     private boolean alive;
-    private int yPos;
+    protected int yPos;
 
     public Entity() {}
 
-    public Entity(int hit_value, double health, int yPos) {}
-    public int getHitValue() {return 0;}
-    public double getHealth() {return 0;}
-    public void setHealth(double health) {}
-    public int getYPos() {return 0;}
-    public Entity clone() {return new Entity();}
-    public boolean isAlive() {return false;}
+    public Entity(int hit_value, double health, int yPos)
+    {
+        this.hitValue = hit_value;
+        this.health = health;
+        this.yPos = yPos;
+        this.alive = true;
+    }
+    public int getHitValue() {return hitValue;}
+    public double getHealth() {return health;}
+    public void setHealth(double health) {this.health = health;}
+    public int getYPos() {return yPos;}
+    public Entity clone()
+    {
+        Entity e  = null;
+        try
+        {
+            e = (Entity)super.clone();
+        }
+        catch (CloneNotSupportedException c) {}
+
+        return e;
+    }
+    public boolean isAlive() {return alive;}
 }

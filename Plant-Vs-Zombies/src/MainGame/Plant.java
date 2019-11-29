@@ -1,17 +1,25 @@
 package MainGame;
 
-public class Plant extends Entity
+public abstract class Plant extends Entity
 {
     private int buyValue;
     private int xPos;
     private long genTime;
     public Plant() {}
-    public Plant(int buy_val ,int xPos,long gemTime) {}
-    public int getBuyValue() {return 0;}
-    public int getXPos() {return 0;}
-    public void setXPos(int xPos) {}
-    public void setYPos(int yPos) {}
-    public Plant clone() {return new Plant();}
+    public Plant(int buy_val ,int xPos,long genTime)
+    {
+        buyValue = buy_val;
+        this.xPos = xPos;
+        this.genTime = genTime;
+    }
+    public int getBuyValue() {return buyValue;}
+    public int getXPos() {return xPos;}
+    public void setXPos(int xPos) {this.xPos = xPos;}
+    public void setYPos(int yPos) {this.yPos = yPos;}
+    public Plant clone()
+    {
+        return (Plant)super.clone();
+    }
     public boolean equals() {return false;}
-    public void plantAction() {}
+    public abstract void plantAction();
 }

@@ -33,6 +33,10 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+        GameInitializer gameInitializer= new GameInitializer(mainMenuController,chooseLevelController);
+        mainMenuController.setGameInitializer(gameInitializer);
+        chooseLevelController.setGameInitializer(gameInitializer);
+
         Parent menuRoot = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Parent splashRoot = FXMLLoader.load(getClass().getResource("SplashScreen.fxml"));
         Scene mainMenu= new Scene(menuRoot);

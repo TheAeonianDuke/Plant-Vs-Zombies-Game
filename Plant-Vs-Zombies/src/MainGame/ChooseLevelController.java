@@ -31,10 +31,9 @@ public class ChooseLevelController implements Serializable
     @FXML
     private Button Level5;
 
-//    public ChooseLevelController(GameInitializer gameInitializer)
-//    {
-//        this.gameInitializer = gameInitializer;
-//    }
+    public void setGameInitializer(GameInitializer gameInitializer) {
+        this.gameInitializer = gameInitializer;
+    }
 
     public void goToLevelOne(ActionEvent actionEvent)
     {

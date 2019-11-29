@@ -31,11 +31,11 @@ public class Level implements Serializable
     protected int[] getZombieLocation() {return new int[]{1,2};}
     private void moveZombie() {}
     public void zombieWave() {}
-    public int getCurrZombieCount() {return 0;}
-    private int getRemainingZombieCount() {return 0;}
+    public int getCurrZombieCount() {return currZombieCount;}
+    private int getRemainingZombieCount() {return remainingZombieCount;}
     public void activateLawnMower(int yPos) {}
     public void PlayerMove() {}
     private void incrementSunCounter() {}
     public void SunFromSky() {}
-    public boolean getLevelWon() {return false;}
+    public boolean getLevelWon() {return playerWon;}
 }

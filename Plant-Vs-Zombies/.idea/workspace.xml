@@ -1,39 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added fx id to all AnchorPane">
-      <change afterPath="$PROJECT_DIR$/src/MainGame/BarrierPlant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Entity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/ExplosivePlant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/GameBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/GameWinException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/LawnMowerException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Level.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/LevelClearException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/MenuBtn.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/MenuBtn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Plant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/PlantDiedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/ShooterPlant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/SunPlant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Zombie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/ZombieKilledException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/test_drag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Class_ Diagram_2018060_2018211.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../Class_ Diagram_2018060_2018211.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Made required classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/Lawn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/Lawn.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/MainMenu.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/MainMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/MainMenuController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/ChooseLevel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/ChooseLevel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainGame/BarrierPlant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/BarrierPlant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainGame/ChooseLevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/ChooseLevelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/Lawn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Lawn.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/LawnController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/LawnController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/GameInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainGame/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainGame/ExplosivePlant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/ExplosivePlant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainGame/GameInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/GameInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainGame/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainGame/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainGame/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainGame/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Plant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainGame/ShooterPlant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/ShooterPlant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainGame/SunPlant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/SunPlant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainGame/Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Zombie.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -309,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573315960483</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Made required classes">
+      <created>1575033470590</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1575033470591</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,6 +324,7 @@
     <MESSAGE value="Added CollectSun and SunCounter" />
     <MESSAGE value="Added ChooseLevel" />
     <MESSAGE value="Added fx id to all AnchorPane" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added fx id to all AnchorPane" />
+    <MESSAGE value="Made required classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made required classes" />
   </component>
 </project>

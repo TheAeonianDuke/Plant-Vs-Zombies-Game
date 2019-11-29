@@ -33,17 +33,15 @@ public class MainMenuController implements Serializable
     @FXML
     private TextField username;
 
-//    public MainMenuController(GameInitializer gameInitializer)
-//    {
-//        this.gameInitializer = gameInitializer;
-//    }
-
+    public void setGameInitializer(GameInitializer gameInitializer) {
+        this.gameInitializer = gameInitializer;
+    }
 
     public void playGame(javafx.event.ActionEvent actionEvent) throws IOException
     {
         if(! username.getText().trim().isEmpty())
         {
-//            gameInitializer.setUserName(username.getText());
+            gameInitializer.setUserName(username.getText());
             Pane pane = FXMLLoader.load(getClass().getResource("Lawn.fxml"));
             mainMenu.getChildren().setAll(pane);
         }
@@ -57,7 +55,7 @@ public class MainMenuController implements Serializable
     public void chooseLevel(ActionEvent actionEvent) throws IOException {
         if(! username.getText().trim().isEmpty())
         {
-//            gameInitializer.setUserName(username.getText());
+            gameInitializer.setUserName(username.getText());
             Pane pane = FXMLLoader.load(getClass().getResource("ChooseLevel.fxml"));
             mainMenu.getChildren().setAll(pane);
         }
