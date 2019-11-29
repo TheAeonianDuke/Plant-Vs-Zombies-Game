@@ -168,53 +168,29 @@ public class LawnController implements Initializable {
     {
         double peashooter_initX=peashooter_anim.getLayoutX();
         double peashooter_initY=peashooter_anim.getLayoutY();
-        double sunflower_initX=sunflower.getLayoutX();
-        double sunflower_initY=sunflower.getLayoutY();
-        double walnut_initX=walnut.getLayoutX();
-        double walnut_initY=walnut.getLayoutY();
-        double potato_initX=potato.getLayoutX();
-        double potato_initY=potato.getLayoutY();
 
-        peashooter_btn.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("lol pressed");
-                Plants New_Peashooter=new PeaShooter(100,100,20,false,null,5);
-                for (int i =0 ; i<45; i++) {
-                    DragOver(peashooter_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu,New_Peashooter);
-                }
-            }
-
-        });
-
-
-        sunflower_btn.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Plants New_Sunflower=new SunFlower(100,100,20,false,null,5);
-                for (int i =0 ; i<45; i++) {
-                    DragOver(sunflower_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu,New_Sunflower);
-                }
+        peashooter_btn.setOnMousePressed(event -> {
+            System.out.println("lol pressed");
+            for (int i =0 ; i<45; i++) {
+                DragOver(peashooter_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu);
             }
         });
 
 
-        walnut_btn.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Plants New_Walnut=new Wallnut(100,100,20,false,null,5);
-                for (int i =0 ; i<45; i++) {
-                    DragOver(walnut_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu,New_Walnut);
-                }
+        sunflower_btn.setOnMousePressed(event -> {
+            for (int i =0 ; i<45; i++) {
+                DragOver(sunflower_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu);
             }
         });
-        potato_btn.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Plants New_Potato=new PotatoMine(100,100,20,false,null,5);
-                for (int i =0 ; i<45; i++) {
-                    DragOver(potato_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu,New_Potato);
-                }
+
+        walnut_btn.setOnMousePressed(event -> {
+            for (int i =0 ; i<45; i++) {
+                DragOver(walnut_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu);
+            }
+        });
+        potato_btn.setOnMousePressed(event -> {
+            for (int i =0 ; i<45; i++) {
+                DragOver(potato_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu);
             }
         });
 
@@ -379,15 +355,45 @@ public class LawnController implements Initializable {
 //    }
 
     // Drag Over Tile Detection //
-    private void DragOver( Button elem, AnchorPane tile, double peashooter_initX, double peashooter_initY, AnchorPane exception_tiles, Plants plant) {
+    private void DragOver( Button elem, AnchorPane tile, double peashooter_initX, double peashooter_initY, AnchorPane exception_tiles) {
 
+        Plants plant=null;
+        if(elem.getId().equals("peashooter_btn"))
+        {
+            System.out.println("lmao");
+            plant=new PeaShooter(100,100,20,false,null,5);
+            Lawn.getChildren().add(plant.get_main_img());
+            Lawn.getChildren().add(plant.get_other_img());
+        }
+
+        else if(elem.getId().equals("sunflower_btn"))
+        {
+            plant=new SunFlower(100,100,20,false,null,5);
+            Lawn.getChildren().add(plant.get_main_img());
+            Lawn.getChildren().add(plant.get_other_img());
+        }
+
+        else if(elem.getId().equals("walnut_btn"))
+        {
+            plant=new Wallnut(100,100,20,false,null,5);
+            Lawn.getChildren().add(plant.get_main_img());
+//            Lawn.getChildren().add(plant.get_other_img());
+        }
+
+        else if(elem.getId().equals("potato_btn"))
+        {
+            plant=new PotatoMine(100,100,20,false,null,5);
+            Lawn.getChildren().add(plant.get_main_img());
+//            Lawn.getChildren().add(plant.get_other_img());
+        }
         ImageView peashooter_img=plant.get_main_img();
         ImageView pea_img=plant.get_other_img();
-        Lawn.getChildren().add(peashooter_img);
-        peashooter_img.setVisible(false);
-        Lawn.getChildren().add(pea_img);
-        pea_img.setVisible(false);
 
+        peashooter_img.setVisible(false);
+//        Lawn.getChildren().add(pea_img);
+        if(pea_img!=null) {
+            pea_img.setVisible(false);
+        }
         elem.setOnMousePressed(event -> {
             peashooter_img.setVisible(true);
             peashooter_img.setLayoutX(event.getSceneX() - 10);
@@ -427,12 +433,7 @@ public class LawnController implements Initializable {
 
         elem.setOnMouseDragReleased(event -> peashooter_img.setVisible(false));
 
-        elem.setOnDragDone(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                peashooter_img.setVisible(false);
-            }
-        });
+        elem.setOnDragDone(event -> peashooter_img.setVisible(false));
 
         elem.setOnDragDropped(event -> peashooter_img.setVisible(false));
 
@@ -455,12 +456,13 @@ public class LawnController implements Initializable {
             peashooter_img.setLayoutY(peashooter_initY);
         });
 
+        Plants finalPlant = plant;
         tile.setOnMouseDragReleased(event -> {
             System.out.println(event.getSceneX());
             if (event.getGestureSource() != tile && event.getGestureSource()!=exception_tiles && event.getSceneX()>0) {
                 peashooter_img.setVisible(true);
-                plant.setTilePlaced(tile);
-                Plants_List.add(plant);
+                finalPlant.setTilePlaced(tile);
+                Plants_List.add(finalPlant);
                 peashooter_img.setLayoutX(tile.getLayoutX() + 25);
                 peashooter_img.setLayoutY(tile.getLayoutY() + 15);
 
@@ -490,7 +492,6 @@ public class LawnController implements Initializable {
             }
         });
     }
-
 
 
     // Exit To Menu //
@@ -527,6 +528,7 @@ public class LawnController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         createZombie();
         createZombie();
+        createPlants();
         FallSun();
 //        triggerLawnMower();
 

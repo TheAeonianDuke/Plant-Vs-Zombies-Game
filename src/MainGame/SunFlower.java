@@ -7,6 +7,7 @@ public class SunFlower extends Plants
 {
     private static final String plant_id = "SunFlower";
     private final ImageView sunflower_img = new ImageView("main/resources/sun_flower.gif");
+    private final ImageView sun_img = new ImageView("main/resources/sun.gif");
 
     public SunFlower(int health, int sun_Cost, int attack_power, boolean isDead, AnchorPane tilePlaced, int recharge) {
         super(plant_id, health, sun_Cost, attack_power, isDead, tilePlaced, recharge);
@@ -23,6 +24,6 @@ public class SunFlower extends Plants
 
     @Override
     public ImageView get_other_img() {
-        return null;
+        return sun_img;
     }
 }

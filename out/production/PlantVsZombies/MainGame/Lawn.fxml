@@ -124,10 +124,10 @@
         <AnchorPane id="tile03" fx:id="tile03" layoutX="309.0" layoutY="214.0" prefHeight="118.0" prefWidth="86.0" />
         <AnchorPane id="plantPanel" fx:id="sidemenu" layoutX="-4.0" layoutY="-2.0" prefHeight="722.0" prefWidth="224.0">
          <children>
-            <Button id="panel_sunflower_btn" fx:id="sunflower_btn" layoutX="23.0" layoutY="151.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-1" stylesheets="@../main/resources/styles/styles.css" />
-            <Button id="panel_sunflower_btn" fx:id="peashooter_btn" layoutX="23.0" layoutY="264.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-2" stylesheets="@../main/resources/styles/styles.css" />
-            <Button id="panel_sunflower_btn" fx:id="walnut_btn" layoutX="23.0" layoutY="378.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="138.0" styleClass="sidebar-button-3" stylesheets="@../main/resources/styles/styles.css" />
-            <Button id="panel_sunflower_btn" fx:id="potato_btn" layoutX="23.0" layoutY="498.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-4" stylesheets="@../main/resources/styles/styles.css" />
+            <Button id="sunflower_btn" fx:id="sunflower_btn" layoutX="23.0" layoutY="151.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-1" stylesheets="@../main/resources/styles/styles.css" />
+            <Button id="peashooter_btn" fx:id="peashooter_btn" layoutX="23.0" layoutY="264.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-2" stylesheets="@../main/resources/styles/styles.css" />
+            <Button id="walnut_btn" fx:id="walnut_btn" layoutX="23.0" layoutY="378.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="138.0" styleClass="sidebar-button-3" stylesheets="@../main/resources/styles/styles.css" />
+            <Button id="potato_btn" fx:id="potato_btn" layoutX="23.0" layoutY="498.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-4" stylesheets="@../main/resources/styles/styles.css" />
          </children></AnchorPane>
         <AnchorPane id="inGameMenu" layoutX="1096.0" layoutY="23.0" prefHeight="45.0" prefWidth="125.0">
          <children>
