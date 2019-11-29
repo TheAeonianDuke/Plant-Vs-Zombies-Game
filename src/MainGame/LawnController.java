@@ -1,6 +1,5 @@
 package MainGame;
 
-import com.sun.jndi.toolkit.url.UrlUtil;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
@@ -11,20 +10,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -42,10 +35,10 @@ public class LawnController implements Initializable {
     private Pane Lawn;
 
     @FXML
-    private Button peashooter;
+    private Button peashooter_btn, sunflower_btn, walnut_btn, potato_btn;
 
     @FXML
-    private ImageView peashooter_anim;
+    private ImageView peashooter_anim, sunflower,walnut, potato;
 
     @FXML
     private Pane menu_panel;
@@ -83,7 +76,7 @@ public class LawnController implements Initializable {
     ArrayList<Double> Zombieimg = new ArrayList<>();
 
     // Peashooter ArrayList //
-    ArrayList<PeaShooter> Peashooter_List=new ArrayList<>();
+    ArrayList<PeaShooter> Plants_List=new ArrayList<>();
 
     // Zombies ArrayList //
     ArrayList<Default_Zombie> Zombies_List=new ArrayList<>();
@@ -171,8 +164,37 @@ public class LawnController implements Initializable {
         }
     }
 
-    private void createPeaShooter()
+    private void createPlants()
     {
+        double peashooter_initX=peashooter_anim.getLayoutX();
+        double peashooter_initY=peashooter_anim.getLayoutY();
+        double sunflower_initX=sunflower.getLayoutX();
+        double sunflower_initY=sunflower.getLayoutY();
+        double walnut_initX=walnut.getLayoutX();
+        double walnut_initY=walnut.getLayoutY();
+        double potato_initX=potato.getLayoutX();
+        double potato_initY=potato.getLayoutY();
+
+        if(peashooter_btn.isPressed())
+        {
+            Plants New_Peashooter=new PeaShooter(100,100,20,false,null,5);
+            for (int i =0 ; i<45; i++) {
+                    DragOverPeaOrSun(peashooter_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu,New_Peashooter,New_Peashooter.get_other_img());
+                }
+            }
+
+        if(sunflower_btn.isPressed())
+        {
+            Plants New_Sunflower=new PeaShooter(100,100,20,false,null,5);
+            for (int i =0 ; i<45; i++) {
+                DragOverPeaOrSun(peashooter_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu,New_Peashooter,New_Peashooter.get_other_img());
+            }
+        }
+
+        }
+
+
+
 
     }
 
@@ -336,7 +358,150 @@ public class LawnController implements Initializable {
 //    }
 
     // Drag Over Tile Detection //
-    private void DragOver( Button elem, AnchorPane tile, double peashooter_initX, double peashooter_initY, AnchorPane exception_tiles) {
+    private void DragOverPeaOrSun( Button elem, AnchorPane tile, double peashooter_initX, double peashooter_initY, AnchorPane exception_tiles, Plants plant, ImageView SunOrPea) {
+
+        ImageView peashooter_img=plant.get_main_img();
+        ImageView pea_img=plant.get_other_img();
+        Lawn.getChildren().add(peashooter_img);
+        peashooter_img.setVisible(false);
+        Lawn.getChildren().add(pea_img);
+        pea_img.setVisible(false);
+        elem.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                peashooter_img.setVisible(true);
+                peashooter_img.setLayoutX(event.getSceneX() - 10);
+                peashooter_img.setLayoutY(event.getSceneY() - 10);
+                pea_img.setLayoutX(event.getSceneX() - 10);
+                pea_img.setLayoutY(event.getSceneY() - 10);
+//                System.out.println("Mouse Pressed Detected!");
+                event.consume();
+            }
+        });
+
+        elem.setOnMouseDragged(event -> {
+            peashooter_img.setVisible(true);
+            peashooter_img.setLayoutX(event.getSceneX() - 10);
+            peashooter_img.setLayoutY(event.getSceneY() - 10);
+            pea_img.setLayoutX(event.getSceneX() - 10);
+            pea_img.setLayoutY(event.getSceneY() - 10);
+//                System.out.println("Dragging Element Detected!");
+        });
+
+        elem.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                new_peashooter=new ImageView("resources/pea_shooter.gif");
+                peashooter_img.setVisible(true);
+                peashooter_img.startFullDrag();
+                peashooter_img.setMouseTransparent(true);
+//                peashooter_anim.startFullDrag();
+//                peashooter_anim.setMouseTransparent(true);
+                pea_img.startFullDrag();
+                pea_img.setMouseTransparent(true);
+            }
+        });
+
+        elem.setOnMouseDragReleased(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                peashooter_img.setVisible(false);
+            }
+        });
+
+        elem.setOnDragDone(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent event) {
+                peashooter_img.setVisible(false);
+            }
+        });
+
+        elem.setOnDragDropped(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent event) {
+                peashooter_img.setVisible(false);
+            }
+        });
+
+        elem.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                peashooter_img.setVisible(false);
+            }
+        });
+
+        elem.setOnMouseDragExited(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                peashooter_img.setVisible(false);
+            }
+        });
+
+        tile.setOnMouseDragOver(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                if (event.getGestureSource() != tile && event.getGestureSource()!=exception_tiles  ) {
+//                    System.out.println("over");
+                    tile.setStyle("-fx-background-color: #3cb371; -fx-border-color: #ffff");
+                    tile.setOpacity(0.5);
+//                    tile.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 20, 0, 0, 0)");
+                }
+            }
+        });
+
+        exception_tiles.setOnMouseDragReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                peashooter_img.setVisible(true);
+                peashooter_img.setLayoutX(peashooter_initX);
+                peashooter_img.setLayoutY(peashooter_initY);
+            }
+        });
+
+        tile.setOnMouseDragReleased(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                System.out.println(event.getSceneX());
+                if (event.getGestureSource() != tile && event.getGestureSource()!=exception_tiles && event.getSceneX()>0) {
+                    peashooter_img.setVisible(true);
+                    peaShooter.setTilePlaced(tile);
+                    Plants_List.add(peaShooter);
+                    peashooter_img.setLayoutX(tile.getLayoutX() + 25);
+                    peashooter_img.setLayoutY(tile.getLayoutY() + 15);
+                    pea_img.setLayoutX(tile.getLayoutX() + 30);
+                    pea_img.setLayoutY(tile.getLayoutY() + 20);
+                    tile.setOpacity(1);
+                    shootPea(pea_img);
+                    tile.setStyle("-fx-background-color: transparent");
+                }
+
+
+            }
+        });
+
+        tile.setOnMouseDragExited(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                tile.setOpacity(1);
+                tile.setStyle("-fx-background-color: transparent");
+            }
+        });
+
+        Lawn.setOnMouseDragReleased(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+//                System.out.println("X"+event.getSceneX()+"Y"+event.getSceneY());
+                if( event.getSceneX()<306 || event.getSceneX()>1180 || event.getSceneY()>688 || event.getSceneY()<90 && event.getGestureSource()!=exception_tiles)
+                {
+                    peashooter_img.setVisible(true);
+                    peashooter_img.setLayoutX(peashooter_initX);
+                    peashooter_img.setLayoutY(peashooter_initY);
+                }
+            }
+        });
+    }
+
+    private void DragOverOthers( Button elem, AnchorPane tile, double peashooter_initX, double peashooter_initY, AnchorPane exception_tiles) {
 
         PeaShooter peaShooter=new PeaShooter();
 
@@ -445,7 +610,7 @@ public class LawnController implements Initializable {
                 if (event.getGestureSource() != tile && event.getGestureSource()!=exception_tiles && event.getSceneX()>0) {
                     peashooter_img.setVisible(true);
                     peaShooter.setTilePlaced(tile);
-                    Peashooter_List.add(peaShooter);
+                    Plants_List.add(peaShooter);
                     peashooter_img.setLayoutX(tile.getLayoutX() + 25);
                     peashooter_img.setLayoutY(tile.getLayoutY() + 15);
                     pea_img.setLayoutX(tile.getLayoutX() + 30);
@@ -518,8 +683,8 @@ public class LawnController implements Initializable {
         createZombie();
         FallSun();
 //        triggerLawnMower();
-        double peashooter_initX=peashooter_anim.getLayoutX();
-        double peashooter_initY=peashooter_anim.getLayoutY();
+
+
         TilePanes = new AnchorPane[]{tile00, tile01, tile02, tile03, tile04,
                                     tile10, tile11, tile12, tile13, tile14,
                                     tile20, tile21, tile22, tile23, tile24,
@@ -529,16 +694,7 @@ public class LawnController implements Initializable {
                                     tile60, tile61, tile62, tile63, tile64,
                                     tile70, tile71, tile72, tile73, tile74,
                                     tile80, tile81, tile82, tile83, tile84};
-        for (int i =0 ; i<45; i++) {
-            try {
-                DragOver(peashooter,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu);
-//                DragOver(tile22);
-            }
-            catch (Exception e)
-            {
-                System.out.println(i);
-            }
-        }
+
 
 
     }
