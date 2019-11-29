@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane fx:id="chooseLevel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainGame.ChooseLevelController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
@@ -14,32 +13,32 @@
             <Image url="@../main/resources/chooselevel.png" />
          </image>
       </ImageView>
-      <Button fx:id="Level1" centerShape="false" layoutX="120.0" layoutY="353.0" mnemonicParsing="false" onAction="#goToLevelOne" prefHeight="94.0" prefWidth="193.0" text="Level 1" textFill="WHITE" stylesheets="@../main/resources/styles/styles.css">
+      <Button fx:id="Level1" centerShape="false" layoutX="120.0" layoutY="353.0" mnemonicParsing="false" onAction="#goToLevelOne" prefHeight="94.0" prefWidth="193.0" stylesheets="@../main/resources/styles/styles.css" text="Level 1" textFill="WHITE">
          <font>
             <Font name="Turtles" size="40.0" />
          </font>
       </Button>
-      <Button fx:id="Level2" layoutX="360.0" layoutY="533.0" mnemonicParsing="false" onAction="#goToLevelTwo" prefHeight="71.0" prefWidth="306.0" text="Level 2" textFill="WHITE" stylesheets="@../main/resources/styles/styles.css">
+      <Button fx:id="Level2" layoutX="360.0" layoutY="533.0" mnemonicParsing="false" onAction="#goToLevelTwo" prefHeight="71.0" prefWidth="306.0" stylesheets="@../main/resources/styles/styles.css" text="Level 2" textFill="WHITE">
          <font>
             <Font name="Turtles" size="42.0" />
          </font>
       </Button>
-      <Button fx:id="Level3" layoutX="424.0" layoutY="295.0" mnemonicParsing="false" onAction="#goToLevelThree" prefHeight="151.0" prefWidth="135.0" text="Level 3" textFill="WHITE" stylesheets="@../main/resources/styles/styles.css">
+      <Button fx:id="Level3" layoutX="424.0" layoutY="295.0" mnemonicParsing="false" onAction="#goToLevelThree" prefHeight="151.0" prefWidth="135.0" stylesheets="@../main/resources/styles/styles.css" text="Level 3" textFill="WHITE">
          <font>
             <Font name="Turtles" size="23.0" />
          </font>
       </Button>
-      <Button fx:id="Level4" layoutX="693.0" layoutY="339.0" mnemonicParsing="false" onAction="#goToLevelFour" prefHeight="160.0" prefWidth="200.0" rotate="10.6" text="Level 4" textFill="WHITE" stylesheets="@../main/resources/styles/styles.css">
+      <Button fx:id="Level4" layoutX="693.0" layoutY="339.0" mnemonicParsing="false" onAction="#goToLevelFour" prefHeight="160.0" prefWidth="200.0" rotate="10.6" stylesheets="@../main/resources/styles/styles.css" text="Level 4" textFill="WHITE">
          <font>
-            <Font name="Turtles" size="45.0" />
+            <Font name="Turtles" size="40.0" />
          </font>
       </Button>
-      <Button fx:id="Level5" layoutX="913.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToLevelFive" prefHeight="122.0" prefWidth="216.0" rotate="9.0" text="Level 5" textAlignment="CENTER" textFill="WHITE" stylesheets="@../main/resources/styles/styles.css">
+      <Button fx:id="Level5" layoutX="913.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToLevelFive" prefHeight="122.0" prefWidth="216.0" rotate="9.0" stylesheets="@../main/resources/styles/styles.css" text="Level 5" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Turtles" size="42.0" />
          </font>
       </Button>
-      <Button fx:id="Back" layoutX="837.0" layoutY="632.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="43.0" prefWidth="230.0" rotate="2.0" text="Back" textFill="WHITE" stylesheets="@../main/resources/styles/styles.css">
+      <Button fx:id="Back" layoutX="837.0" layoutY="632.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="43.0" prefWidth="230.0" rotate="2.0" stylesheets="@../main/resources/styles/styles.css" text="Back" textFill="WHITE">
          <font>
             <Font name="Turtles" size="23.0" />
          </font>

@@ -14,7 +14,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="PlantVsZombies" options="--add-exports=javafx.graphics/com.sun.javafx.application=ALL-UNNAMED" />
+      <module name="PlantVsZombies" options="--add-exports=javafx.graphics/com.sun.javafx.application=ALL-UNNAMED --add-exports=java.naming/com.sun.jndi.toolkit.url=ALL-UNNAMED" />
     </option>
   </component>
 </project>

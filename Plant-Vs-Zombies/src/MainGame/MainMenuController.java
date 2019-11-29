@@ -1,5 +1,6 @@
 package MainGame;
 
+import java.io.Serializable;
 import java.lang.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,8 +11,10 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 
-public class MainMenuController
+public class MainMenuController implements Serializable
 {
+    private GameInitializer gameInitializer;
+
     @FXML
     private Pane mainMenu;
 
@@ -30,10 +33,17 @@ public class MainMenuController
     @FXML
     private TextField username;
 
+//    public MainMenuController(GameInitializer gameInitializer)
+//    {
+//        this.gameInitializer = gameInitializer;
+//    }
+
+
     public void playGame(javafx.event.ActionEvent actionEvent) throws IOException
     {
         if(! username.getText().trim().isEmpty())
         {
+//            gameInitializer.setUserName(username.getText());
             Pane pane = FXMLLoader.load(getClass().getResource("Lawn.fxml"));
             mainMenu.getChildren().setAll(pane);
         }
@@ -45,13 +55,22 @@ public class MainMenuController
     }
 
     public void chooseLevel(ActionEvent actionEvent) throws IOException {
-        Pane pane = FXMLLoader.load(getClass().getResource("ChooseLevel.fxml"));
-        mainMenu.getChildren().setAll(pane);
+        if(! username.getText().trim().isEmpty())
+        {
+//            gameInitializer.setUserName(username.getText());
+            Pane pane = FXMLLoader.load(getClass().getResource("ChooseLevel.fxml"));
+            mainMenu.getChildren().setAll(pane);
+        }
     }
 
     public void exitGame(ActionEvent actionEvent)
     {
         System.out.println("Exit Game");
         System.exit(0);
+    }
+
+    public String getUserName()
+    {
+        return username.getText();
     }
 }

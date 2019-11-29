@@ -9,8 +9,26 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class MainMenu extends Application
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main extends Application
 {
+    public static Map<String, ArrayList<GameInitializer>> savedGame= new HashMap<>();
+    public static MainMenuController mainMenuController = new MainMenuController();
+    public static ChooseLevelController chooseLevelController = new ChooseLevelController();
+    public static LawnController lawnController = new LawnController();
+
+    public static void serialize()
+    {
+
+    }
+
+    public static void deserialize()
+    {
+
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception
@@ -39,8 +57,7 @@ public class MainMenu extends Application
         pause.play();
     }
 
-
-    public static void main(String[] args)
+    public static void main(String []args)
     {
         launch(args);
     }
