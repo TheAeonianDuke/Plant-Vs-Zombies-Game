@@ -1,6 +1,5 @@
 package MainGame;
 
-import java.io.Serializable;
 import java.lang.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,10 +10,8 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 
-public class MainMenuController implements Serializable
+public class MainMenuController
 {
-    private GameInitializer gameInitializer;
-
     @FXML
     private Pane mainMenu;
 
@@ -33,15 +30,10 @@ public class MainMenuController implements Serializable
     @FXML
     private TextField username;
 
-    public void setGameInitializer(GameInitializer gameInitializer) {
-        this.gameInitializer = gameInitializer;
-    }
-
-    public void playGame(javafx.event.ActionEvent actionEvent) throws IOException
+    public void playGame(ActionEvent actionEvent) throws IOException
     {
         if(! username.getText().trim().isEmpty())
         {
-            gameInitializer.setUserName(username.getText());
             Pane pane = FXMLLoader.load(getClass().getResource("Lawn.fxml"));
             mainMenu.getChildren().setAll(pane);
         }
@@ -53,9 +45,7 @@ public class MainMenuController implements Serializable
     }
 
     public void chooseLevel(ActionEvent actionEvent) throws IOException {
-        if(! username.getText().trim().isEmpty())
-        {
-            gameInitializer.setUserName(username.getText());
+        if(! username.getText().trim().isEmpty()) {
             Pane pane = FXMLLoader.load(getClass().getResource("ChooseLevel.fxml"));
             mainMenu.getChildren().setAll(pane);
         }
@@ -65,10 +55,5 @@ public class MainMenuController implements Serializable
     {
         System.out.println("Exit Game");
         System.exit(0);
-    }
-
-    public String getUserName()
-    {
-        return username.getText();
     }
 }

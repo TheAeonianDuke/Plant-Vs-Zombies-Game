@@ -11,8 +11,6 @@ import java.io.Serializable;
 
 public class ChooseLevelController implements Serializable
 {
-    private GameInitializer gameInitializer;
-
     @FXML
     private Pane chooseLevel;
 
@@ -30,10 +28,6 @@ public class ChooseLevelController implements Serializable
 
     @FXML
     private Button Level5;
-
-    public void setGameInitializer(GameInitializer gameInitializer) {
-        this.gameInitializer = gameInitializer;
-    }
 
     public void goToLevelOne(ActionEvent actionEvent)
     {

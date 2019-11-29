@@ -9,34 +9,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-public class Main extends Application
+public class MainMenu extends Application
 {
-    public static Map<String, ArrayList<GameInitializer>> savedGame= new HashMap<>();
-    public static MainMenuController mainMenuController = new MainMenuController();
-    public static ChooseLevelController chooseLevelController = new ChooseLevelController();
-    public static LawnController lawnController = new LawnController();
-
-    public static void serialize()
-    {
-
-    }
-
-    public static void deserialize()
-    {
-
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        GameInitializer gameInitializer= new GameInitializer(mainMenuController,chooseLevelController);
-        mainMenuController.setGameInitializer(gameInitializer);
-        chooseLevelController.setGameInitializer(gameInitializer);
-
         Parent menuRoot = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Parent splashRoot = FXMLLoader.load(getClass().getResource("SplashScreen.fxml"));
         Scene mainMenu= new Scene(menuRoot);
@@ -61,7 +39,8 @@ public class Main extends Application
         pause.play();
     }
 
-    public static void main(String []args)
+
+    public static void main(String[] args)
     {
         launch(args);
     }
