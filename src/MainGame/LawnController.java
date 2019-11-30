@@ -1,5 +1,7 @@
 package MainGame;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
@@ -36,7 +38,7 @@ public class LawnController implements Initializable {
     private Button peashooter_btn, sunflower_btn, walnut_btn, potato_btn;
 
     @FXML
-    private ImageView peashooter_anim, sunflower,walnut, potato;
+    private ImageView peashooter_anim, sunflower,walnut, potato,suncounter;
 
     @FXML
     private Pane menu_panel;
@@ -216,10 +218,21 @@ public class LawnController implements Initializable {
                 if(newValue)
                 {
                     System.out.println(obj1.getId()+" collision pea");
-                    obj1.getMovepea().stop();
-                    obj1.get_other_img().setVisible(false);
-                    attack(obj1,obj2);
-                    obj1.getMovepea().play();
+                    if(obj1 instanceof PeaShooter)
+                    {
+                        ((PeaShooter) obj1).getMovepea().stop();
+                        obj1.get_other_img().setVisible(false);
+                        attack(obj1,obj2);
+                        ((PeaShooter) obj1).getMovepea().play();
+                    }
+
+                    else if(obj1 instanceof SunFlower)
+                    {
+                        ((SunFlower) obj1).getSunanim().stop();
+                        obj1.get_other_img().setVisible(false);
+                        attack(obj1,obj2);
+                        ((SunFlower) obj1).getSunanim().play();
+                    }
                 }
                 else{
                     obj1.get_other_img().setVisible(true);
@@ -244,9 +257,9 @@ public class LawnController implements Initializable {
                 if(newValue)
                 {
                     System.out.println("collision pea");
-                    obj1.getMovepea().stop();
+//                    obj1.getMovepea().stop();
                     obj1.get_main_img().setVisible(false);
-                    obj1.getMovepea().playFromStart();
+//                    obj1.getMovepea().playFromStart();
                 }
                 else{
                     obj1.get_main_img().setVisible(true);
@@ -412,7 +425,17 @@ public class LawnController implements Initializable {
                     pea_img.setLayoutY(tile.getLayoutY() + 20);
                     double init_x=pea_img.getLayoutX();
                     double init_y=pea_img.getLayoutY();
-                    finalPlant.shootPea(pea_img,peashooter_img);
+
+                    if(finalPlant instanceof PeaShooter)
+                    {
+                        ((PeaShooter) finalPlant).shootPea(pea_img,peashooter_img);
+                    }
+
+                    else if(finalPlant instanceof SunFlower)
+                    {
+                        ((SunFlower) finalPlant).SunFlowerAnim(pea_img,peashooter_img, SunCounter);
+                    }
+
                         for(Plants plant_img: Plants_List)
                         {
                             if(pea_img!=null || plant_img.get_other_img()!=null)
@@ -464,16 +487,18 @@ public class LawnController implements Initializable {
 
     public void CollectSun(MouseEvent actionEvent)
     {
-        collectsun = new TranslateTransition(Duration.seconds(4),FallSun);
-        collectsun.setToX(-304);
-        collectsun.setToY(50);
-        collectsun.play();
-        collectsun.setOnFinished(e ->
-        {
-            FallSun.setVisible(false);
-            SunCounter.setText(String.valueOf(Integer.parseInt(SunCounter.getText()) + 50));
-        });
+        FallSun.setVisible(false);
+        suncounter.setStyle("-fx-border-color: #ffcf00");
+        SunCounter.setText(String.valueOf(Integer.parseInt(SunCounter.getText()) + 50));
+//        collectsun = new TranslateTransition(Duration.seconds(4),FallSun);
+//        collectsun.setToX(-304);
+//        collectsun.setToY(50);
+//        collectsun.play();
+//        collectsun.setOnFinished(e ->
+//        {
+//        });
     }
+
 
     // Init //
     @Override

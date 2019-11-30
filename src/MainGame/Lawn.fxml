@@ -22,7 +22,7 @@
       </ImageView>
         <AnchorPane id="sunPoints" layoutX="304.0" prefHeight="92.0" prefWidth="61.0">
          <children>
-            <ImageView fitHeight="81.0" fitWidth="61.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="suncounter" fitHeight="81.0" fitWidth="61.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../main/resources/SunCounter.png" />
                </image>
