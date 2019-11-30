@@ -78,12 +78,40 @@ public class LawnController implements Initializable {
     volatile ArrayList<Plants> Plants_List=new ArrayList<>();
 
     // Zombies ArrayList //
-    volatile ArrayList<Default_Zombie> Zombies_List=new ArrayList<>();
+    volatile ArrayList<Default_Zombie> Zombies_Wave_1=new ArrayList<>();
+    volatile ArrayList<Default_Zombie> Zombies_Wave_2=new ArrayList<>();
+    volatile ArrayList<Default_Zombie> Zombies_Wave_3=new ArrayList<>();
+
 
     // LawnMower ArrayList //
     volatile ArrayList<ImageView> Lawnmower_List=new ArrayList<>();
 
-    public LawnController() {}
+    public void createWaves(int wave_1 , int wave_2 , int wave_3)
+    {
+        Zombieimg.add(Zombie1.getLayoutY());
+        Zombieimg.add(Zombie2.getLayoutY());
+        Zombieimg.add(Zombie3.getLayoutY());
+        Zombieimg.add(Zombie4.getLayoutY());
+        Zombieimg.add(Zombie5.getLayoutY());
+
+        for (int i = 0; i < wave_1 ; i++) {
+            Default_Zombie zombie = new Default_Zombie(Zombieimg.get(get_random.nextInt(Zombieimg.size())));
+            Zombies_Wave_1.add(zombie);
+            Lawn.getChildren().add(zombie.getZombie_img());
+        }
+
+        for (int i = 0; i < wave_2 ; i++) {
+            Default_Zombie zombie = new Default_Zombie(Zombieimg.get(get_random.nextInt(Zombieimg.size())));
+            Zombies_Wave_1.add(zombie);
+            Lawn.getChildren().add(zombie.getZombie_img());
+        }
+
+        for (int i = 0; i < wave_3 ; i++) {
+            Default_Zombie zombie = new Default_Zombie(Zombieimg.get(get_random.nextInt(Zombieimg.size())));
+            Zombies_Wave_1.add(zombie);
+            Lawn.getChildren().add(zombie.getZombie_img());
+        }
+    }
 
     // Sun Falling Anim //
     @FXML
@@ -114,13 +142,13 @@ public class LawnController implements Initializable {
 
         Default_Zombie new_zombie=new Default_Zombie(Zombieimg.get(get_random.nextInt(Zombieimg.size())));
         new_zombie.moveZombie();
-        Zombies_List.add(new_zombie);
+        Zombies_Wave_1.add(new_zombie);
         Lawn.getChildren().add(new_zombie.getZombie_img());
 
         createLawnmower();
         for(ImageView img: Lawnmower_List)
         {
-            for(Default_Zombie zombie : Zombies_List)
+            for(Default_Zombie zombie : Zombies_Wave_1)
             {
                 collisionLawnMowerZombie(img,zombie);
             }
@@ -139,7 +167,7 @@ public class LawnController implements Initializable {
                 zombie.setDead(true);
                 Lawn.getChildren().remove(zombie.getZombie_img());
                 zombie.getMovezombie().stop();
-                Zombies_List.remove(zombie);
+                Zombies_Wave_1.remove(zombie);
             }
         }
     }
@@ -406,7 +434,7 @@ public class LawnController implements Initializable {
                     {
                         if(pea_img!=null || plant_img.get_other_img()!=null)
                         {
-                            for(Default_Zombie zombie : Zombies_List)
+                            for(Default_Zombie zombie : Zombies_Wave_1)
                             {
                                 collisionPeaZombie(plant_img,zombie);
                                 collisionPlantZombie(plant_img,zombie);
@@ -418,23 +446,49 @@ public class LawnController implements Initializable {
                 tile.setOpacity(1);
                 tile.setStyle("-fx-background-color: transparent");
 
-                new Thread(() -> {
-                    Platform.runLater(new Runnable() {
-                        public void run() {
-                            elem.setDisable(true);
+                System.out.println(elem.getId());
+
+                if(elem.getId().equals("potato_btn")) {
+                    new Thread(() -> {
+                        Platform.runLater(() -> elem.setDisable(true));
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException ex) {
                         }
-                    });
-                    try {
-                        Thread.sleep(5000); //5 seconds, obviously replace with your chosen time
+                        Platform.runLater(() -> elem.setDisable(false));
+                    }).start();
+                }
+
+                if(elem.getId().equals("sunflower_btn")){
+                        new Thread(() -> {
+                            Platform.runLater(() -> elem.setDisable(true));
+                            try {
+                                Thread.sleep(5000);
+                            } catch (InterruptedException ex) {
+                            }
+                            Platform.runLater(() -> elem.setDisable(false));
+                        }).start();
                     }
-                    catch(InterruptedException ex) {
-                    }
-                    Platform.runLater(new Runnable() {
-                        public void run() {
-                            elem.setDisable(false);
+                if(elem.getId().equals("peashooter_btn")) {
+                    new Thread(() -> {
+                        Platform.runLater(() -> elem.setDisable(true));
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException ex) {
                         }
-                    });
-                }).start();
+                        Platform.runLater(() -> elem.setDisable(false));
+                    }).start();
+                }
+                if(elem.getId().equals("walnut_btn")) {
+                    new Thread(() -> {
+                        Platform.runLater(() -> elem.setDisable(true));
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException ex) {
+                        }
+                        Platform.runLater(() -> elem.setDisable(false));
+                    }).start();
+                }
             }
         });
 
@@ -444,7 +498,6 @@ public class LawnController implements Initializable {
         });
 
         Lawn.setOnMouseDragReleased(event -> {
-//                System.out.println("X"+event.getSceneX()+"Y"+event.getSceneY());
             if( event.getSceneX()<306 || event.getSceneX()>1180 || event.getSceneY()>688 || event.getSceneY()<90 && event.getGestureSource()!=exception_tiles)
             {
                 peashooter_img.setVisible(true);
@@ -464,9 +517,7 @@ public class LawnController implements Initializable {
     public void ReturnGame(ActionEvent actionEvent) {
         menu_panel.setVisible(false);
         movelawnmower.play();
-//        movezombie.play();
         movesun.play();
-//        movepea.play();
     }
 
     public void CollectSun(MouseEvent actionEvent)
@@ -485,8 +536,7 @@ public class LawnController implements Initializable {
     // Init //
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        createZombie();
-        createZombie();
+        createWaves(2,3,5);
         createPlants();
 
         FallSun();
