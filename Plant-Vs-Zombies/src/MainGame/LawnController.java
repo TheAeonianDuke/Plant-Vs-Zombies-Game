@@ -1,6 +1,7 @@
 package MainGame;
 
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableBooleanValue;
@@ -24,12 +25,10 @@ import java.util.*;
 import java.util.concurrent.Callable;
 
 public class LawnController implements Initializable {
-    private TranslateTransition movelawnmower;
-    private TranslateTransition movezombie;
-    private TranslateTransition movesun;
-    private TranslateTransition movepea;
-    private TranslateTransition collectsun;
-    private Random get_random = new Random();
+    TranslateTransition movelawnmower;
+    TranslateTransition movesun;
+    TranslateTransition collectsun;
+    Random get_random = new Random();
 
     @FXML
     private Pane Lawn;
@@ -76,26 +75,15 @@ public class LawnController implements Initializable {
     ArrayList<Double> Zombieimg = new ArrayList<>();
 
     // Peashooter ArrayList //
-    ArrayList<Plants> Plants_List=new ArrayList<>();
+    volatile ArrayList<Plants> Plants_List=new ArrayList<>();
 
     // Zombies ArrayList //
-    ArrayList<Default_Zombie> Zombies_List=new ArrayList<>();
+    volatile ArrayList<Default_Zombie> Zombies_List=new ArrayList<>();
 
     // LawnMower ArrayList //
-    ArrayList<ImageView> Lawnmower_List=new ArrayList<>();
+    volatile ArrayList<ImageView> Lawnmower_List=new ArrayList<>();
 
     public LawnController() {}
-
-    // Pea Shooting Anim //
-    @FXML
-    private void shootPea(ImageView Pea, ImageView Peashooter) {
-        Pea.setVisible(true);
-        movepea = new TranslateTransition(Duration.seconds(2), Pea);
-        movepea.setFromX(Peashooter.getX());
-        movepea.setToX(1280);
-        movepea.setCycleCount(1000);
-        movepea.play();
-    }
 
     // Sun Falling Anim //
     @FXML
@@ -115,24 +103,43 @@ public class LawnController implements Initializable {
         Lawnmower_List.add(LawnMower4);
     }
 
-    // Move Zombie Anim //
-    private TranslateTransition moveZombie(ImageView zombie_img) {
-        movezombie = new TranslateTransition(Duration.seconds(15), zombie_img);
-        movezombie.setToX(-1280);
-        movezombie.setCycleCount(1);
-        movezombie.play();
-        return movezombie;
+    // Create Default Zombies //
+    private void createZombie()
+    {
+        Zombieimg.add(Zombie1.getLayoutY());
+        Zombieimg.add(Zombie2.getLayoutY());
+        Zombieimg.add(Zombie3.getLayoutY());
+        Zombieimg.add(Zombie4.getLayoutY());
+        Zombieimg.add(Zombie5.getLayoutY());
+
+        Default_Zombie new_zombie=new Default_Zombie(Zombieimg.get(get_random.nextInt(Zombieimg.size())));
+        new_zombie.moveZombie();
+        Zombies_List.add(new_zombie);
+        Lawn.getChildren().add(new_zombie.getZombie_img());
+
+        createLawnmower();
+        for(ImageView img: Lawnmower_List)
+        {
+            for(Default_Zombie zombie : Zombies_List)
+            {
+                collisionLawnMowerZombie(img,zombie);
+            }
+        }
     }
 
     // Attach Mechanism //
-    private void attack(Plants plants , Default_Zombie zombie)
+    private synchronized void attack(Plants plants , Default_Zombie zombie)
     {
         if(!zombie.isDead()) {
             zombie.setHealth(zombie.getHealth() - plants.getAttack_power());
+            System.out.println(zombie.getHealth());
             if(zombie.getHealth() <= 0){
+                System.out.println("Zombie Dead");
                 zombie.setHealth(0);
                 zombie.setDead(true);
                 Lawn.getChildren().remove(zombie.getZombie_img());
+                zombie.getMovezombie().stop();
+                Zombies_List.remove(zombie);
             }
         }
     }
@@ -149,76 +156,20 @@ public class LawnController implements Initializable {
         }
     }
 
-    // Create Default Zombies //
-    private void createZombie()
-    {
-
-        Zombieimg.add(Zombie1.getLayoutY());
-        Zombieimg.add(Zombie2.getLayoutY());
-        Zombieimg.add(Zombie3.getLayoutY());
-        Zombieimg.add(Zombie4.getLayoutY());
-        Zombieimg.add(Zombie5.getLayoutY());
-
-        Default_Zombie new_zombie=new Default_Zombie(200,20,false,Zombieimg.get(get_random.nextInt(Zombieimg.size())));
-        Zombies_List.add(new_zombie);
-        Lawn.getChildren().add(new_zombie.getZombie_img());
-
-        TranslateTransition zombieanim=moveZombie(new_zombie.getZombie_img());
-        createLawnmower();
-        for(ImageView img: Lawnmower_List)
-        {
-            for(Default_Zombie zombie : Zombies_List)
-            {
-                collision(zombie.getZombie_img(), img);
-            }
-        }
-
-    }
-
     private void createPlants()
     {
         double peashooter_initX=peashooter_anim.getLayoutX();
         double peashooter_initY=peashooter_anim.getLayoutY();
-        double sunflower_initX=sunflower.getLayoutX();
-        double sunflower_initY=sunflower.getLayoutY();
-        double walnut_initX=walnut.getLayoutX();
-        double walnut_initY=walnut.getLayoutY();
-        double potato_initX=potato.getLayoutX();
-        double potato_initY=potato.getLayoutY();
 
         peashooter_btn.setOnMousePressed(event -> {
-            System.out.println("lol pressed");
-            Plants New_Peashooter = new PeaShooter(100, 100, 20, false, null, 5);
-            for (int i = 0; i < 45; i++) {
-                DragOver(peashooter_btn, TilePanes[i], peashooter_initX, peashooter_initY, sidemenu);
-            }
-        });
+//            System.out.println("lol pressed");
 
-        peashooter_btn.setOnMousePressed(event -> {
             for (int i =0 ; i<45; i++) {
                 DragOver(peashooter_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu);
             }
         });
 
         sunflower_btn.setOnMousePressed(event -> {
-            Plants New_Sunflower=new SunFlower(100,100,20,false,null,5);
-            for (int i =0 ; i<45; i++) {
-                DragOver(sunflower_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu);
-            }
-        });
-
-
-        walnut_btn.setOnMousePressed(event -> {
-            Plants New_Walnut=new Wallnut(100,100,20,false,null,5);
-            for (int i =0 ; i<45; i++) {
-                DragOver(walnut_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu);
-            }
-        });
-        potato_btn.setOnMousePressed(event -> {
-            Plants New_Potato=new PotatoMine(100,100,20,false,null,5);
-            for (int i =0 ; i<45; i++) {
-                DragOver(potato_btn, TilePanes[i], peashooter_initX, peashooter_initY, sidemenu);
-            }
             for (int i =0 ; i<45; i++) {
                 DragOver(sunflower_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu);
             }
@@ -239,39 +190,42 @@ public class LawnController implements Initializable {
         System.out.println(Plants_List.size());
     }
 
-    private void collision(ImageView obj1, ImageView obj2)
+    private void collisionPeaZombie(Plants obj1, Default_Zombie obj2)
     {
         ObservableBooleanValue collision= Bindings.createBooleanBinding(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                return obj1.getBoundsInParent().intersects(obj2.getBoundsInParent());
+                return obj1.get_other_img().getBoundsInParent().intersects(obj2.getZombie_img().getBoundsInParent());
             }
-        }, obj1.boundsInParentProperty(),obj2.boundsInParentProperty());
+        }, obj1.get_main_img().boundsInParentProperty(),obj2.getZombie_img().boundsInParentProperty());
 
         collision.addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue)
                 {
-                    obj1.setVisible(false);
-                    triggerLawnMower(obj2);
-                    System.out.println(obj2.getLayoutX() + " " + obj1.getLayoutX());
+                    System.out.println(obj1.getId()+" collision pea");
+                    obj1.getMovepea().stop();
+                    obj1.get_other_img().setVisible(false);
+                    attack(obj1,obj2);
+                    obj1.getMovepea().play();
                 }
                 else{
-                    System.out.println("not colliding");
+                    obj1.get_other_img().setVisible(true);
+//                    System.out.println("not colliding");
                 }
             }
         });
     }
 
-    private void collision(ImageView obj1, ImageView obj2, double init_x, double init_y)
+    private void collisionPlantZombie(Plants obj1, Default_Zombie obj2)
     {
         ObservableBooleanValue collision= Bindings.createBooleanBinding(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                return obj1.getBoundsInParent().intersects(obj2.getBoundsInParent());
+                return obj1.get_main_img().getBoundsInParent().intersects(obj2.getZombie_img().getBoundsInParent());
             }
-        }, obj1.boundsInParentProperty(),obj2.boundsInParentProperty());
+        }, obj1.get_main_img().boundsInParentProperty(),obj2.getZombie_img().boundsInParentProperty());
 
         collision.addListener(new ChangeListener<Boolean>() {
             @Override
@@ -279,14 +233,39 @@ public class LawnController implements Initializable {
                 if(newValue)
                 {
                     System.out.println("collision pea");
-                    movepea.stop();
-                    obj2.setVisible(false);
-                    movepea.playFromStart();
-
+                    obj1.getMovepea().stop();
+                    obj1.get_main_img().setVisible(false);
+                    obj1.getMovepea().playFromStart();
                 }
                 else{
-                    obj2.setVisible(true);
+                    obj1.get_main_img().setVisible(true);
                     System.out.println("not colliding");
+                }
+            }
+        });
+    }
+
+    private void collisionLawnMowerZombie(ImageView obj1, Default_Zombie obj2)
+    {
+        ObservableBooleanValue collision= Bindings.createBooleanBinding(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                return obj1.getBoundsInParent().intersects(obj2.getZombie_img().getBoundsInParent());
+            }
+        }, obj1.boundsInParentProperty(),obj2.getZombie_img().boundsInParentProperty());
+
+        collision.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue)
+                {
+                    System.out.println("collision LawnMower");
+                    obj2.getZombie_img().setVisible(false);
+                    triggerLawnMower(obj1);
+                }
+                else{
+//                    obj1.setVisible(true);
+//                    System.out.println("not colliding");
                 }
             }
         });
@@ -295,6 +274,7 @@ public class LawnController implements Initializable {
     // LawnMower Anim //
     private void triggerLawnMower(ImageView lawnmower) {
         movelawnmower = new TranslateTransition(Duration.seconds(3), lawnmower);
+//        movelawnmower.setDelay(Duration.millis(7900));
         movelawnmower.setToX(LawnMower0.getLayoutX() + 1000);
         movelawnmower.setCycleCount(1);
         movelawnmower.play();
@@ -304,11 +284,10 @@ public class LawnController implements Initializable {
     @FXML
     private void MenuBtn(javafx.event.ActionEvent actionEvent) throws IOException {
         menu_panel.setVisible(true);
-        if(movelawnmower != null)
-            movelawnmower.pause();
-        movezombie.pause();
+        movelawnmower.pause();
+//        movezombie.pause();
         movesun.pause();
-        movepea.pause();
+//        movepea.pause();
 
     }
 
@@ -319,7 +298,7 @@ public class LawnController implements Initializable {
         if(elem.getId().equals("peashooter_btn"))
         {
 //            System.out.println("lmao");
-            plant=new PeaShooter(100,100,20,false,null,5);
+            plant=new PeaShooter(100,100,50,false,null,5);
             Lawn.getChildren().add(plant.get_main_img());
             Lawn.getChildren().add(plant.get_other_img());
         }
@@ -360,6 +339,7 @@ public class LawnController implements Initializable {
                 pea_img.setLayoutX(event.getSceneX() - 10);
                 pea_img.setLayoutY(event.getSceneY() - 10);
             }
+//                System.out.println("Mouse Pressed Detected!");
             event.consume();
         });
 
@@ -371,32 +351,30 @@ public class LawnController implements Initializable {
                 pea_img.setLayoutX(event.getSceneX() - 10);
                 pea_img.setLayoutY(event.getSceneY() - 10);
             }
+//                System.out.println("Dragging Element Detected!");
         });
 
         elem.setOnDragDetected(event -> {
+//                new_peashooter=new ImageView("resources/pea_shooter.gif");
             peashooter_img.setVisible(true);
             peashooter_img.startFullDrag();
             peashooter_img.setMouseTransparent(true);
+//                peashooter_anim.startFullDrag();
+//                peashooter_anim.setMouseTransparent(true);
             if(pea_img!=null) {
                 pea_img.startFullDrag();
                 pea_img.setMouseTransparent(true);
             }
         });
 
-        elem.setOnMouseDragReleased(event -> peashooter_img.setVisible(false));
-
-        elem.setOnDragDone(event -> peashooter_img.setVisible(false));
-
-        elem.setOnDragDropped(event -> peashooter_img.setVisible(false));
-
         elem.setOnMouseReleased(event -> peashooter_img.setVisible(false));
-
-        elem.setOnMouseDragExited(event -> peashooter_img.setVisible(false));
 
         tile.setOnMouseDragOver(event -> {
             if (event.getGestureSource() != tile && event.getGestureSource()!=exception_tiles  ) {
+//                    System.out.println("over");
                 tile.setStyle("-fx-background-color: #3cb371; -fx-border-color: #ffff");
                 tile.setOpacity(0.5);
+//                    tile.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 20, 0, 0, 0)");
             }
         });
 
@@ -423,16 +401,15 @@ public class LawnController implements Initializable {
                     pea_img.setLayoutY(tile.getLayoutY() + 20);
                     double init_x=pea_img.getLayoutX();
                     double init_y=pea_img.getLayoutY();
-                    shootPea(pea_img,peashooter_img);
+                    finalPlant.shootPea(pea_img,peashooter_img);
                     for(Plants plant_img: Plants_List)
                     {
                         if(pea_img!=null || plant_img.get_other_img()!=null)
                         {
                             for(Default_Zombie zombie : Zombies_List)
                             {
-                                System.out.println("entereed loop");
-
-                                collision(zombie.getZombie_img(), pea_img,pea_img.getLayoutX(),pea_img.getLayoutY());
+                                collisionPeaZombie(plant_img,zombie);
+                                collisionPlantZombie(plant_img,zombie);
                             }
                         }
                     }
@@ -440,6 +417,24 @@ public class LawnController implements Initializable {
 
                 tile.setOpacity(1);
                 tile.setStyle("-fx-background-color: transparent");
+
+                new Thread(() -> {
+                    Platform.runLater(new Runnable() {
+                        public void run() {
+                            elem.setDisable(true);
+                        }
+                    });
+                    try {
+                        Thread.sleep(5000); //5 seconds, obviously replace with your chosen time
+                    }
+                    catch(InterruptedException ex) {
+                    }
+                    Platform.runLater(new Runnable() {
+                        public void run() {
+                            elem.setDisable(false);
+                        }
+                    });
+                }).start();
             }
         });
 
@@ -468,11 +463,10 @@ public class LawnController implements Initializable {
     // Return To Game //
     public void ReturnGame(ActionEvent actionEvent) {
         menu_panel.setVisible(false);
-        if(movelawnmower!=null)
-            movelawnmower.play();
-        movezombie.play();
+        movelawnmower.play();
+//        movezombie.play();
         movesun.play();
-        movepea.play();
+//        movepea.play();
     }
 
     public void CollectSun(MouseEvent actionEvent)
@@ -489,15 +483,14 @@ public class LawnController implements Initializable {
     }
 
     // Init //
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         createZombie();
         createZombie();
         createPlants();
+
         FallSun();
 //        triggerLawnMower();
-
 
         TilePanes = new AnchorPane[]{tile00, tile01, tile02, tile03, tile04,
                 tile10, tile11, tile12, tile13, tile14,
@@ -508,8 +501,5 @@ public class LawnController implements Initializable {
                 tile60, tile61, tile62, tile63, tile64,
                 tile70, tile71, tile72, tile73, tile74,
                 tile80, tile81, tile82, tile83, tile84};
-        createPlants();
-
-
     }
 }

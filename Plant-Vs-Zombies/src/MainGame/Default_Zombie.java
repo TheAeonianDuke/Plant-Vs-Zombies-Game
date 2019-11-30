@@ -1,15 +1,43 @@
 package MainGame;
 
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
-public class Default_Zombie extends Zombie
-{
+
+
+public class Default_Zombie {
+
+
+    private TranslateTransition movezombie;
+    private static int idgen=0;
+    private int id;
+    private int Health=150;
+    private final int Attack=20;
+
+    private boolean isDead=false;
+    private double yPos;
+
+    public ImageView getZombie_img() {
+        return zombie_img;
+    }
+
+    // Move Zombie Anim //
+    public void moveZombie() {
+        movezombie = new TranslateTransition(Duration.seconds(20), getZombie_img());
+        movezombie.setToX(-1280);
+        movezombie.setCycleCount(1);
+        movezombie.play();
+
+    }
 
     private ImageView zombie_img= new ImageView("main/resources/zombie_normal.gif");
 
-    public Default_Zombie(int health, int Attack ,boolean isDead, double yPos) {
-        super(health,Attack,isDead,yPos);
+    public Default_Zombie(double yPos) {
+        id=idgen;
+        idgen++;
+        this.yPos = yPos;
         zombie_img.setFitWidth(95);
         zombie_img.setFitHeight(95);
         zombie_img.setPreserveRatio(true);
@@ -17,9 +45,41 @@ public class Default_Zombie extends Zombie
         zombie_img.setLayoutY(yPos-15);
     }
 
-    public ImageView getZombie_img()
-    {
-        return zombie_img;
+    public TranslateTransition getMovezombie() {
+        return movezombie;
     }
+
+    public int getHealth() {
+        return Health;
+    }
+
+    public int getAttack() {
+        return Attack;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public double getyPos() {
+        return yPos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setHealth(int health) {
+        Health = health;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
+    public void setyPos(double yPos) {
+        this.yPos = yPos;
+    }
+
 
 }
