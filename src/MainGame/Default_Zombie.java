@@ -6,7 +6,6 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 
-
 public class Default_Zombie {
 
 
@@ -24,8 +23,9 @@ public class Default_Zombie {
     }
 
     // Move Zombie Anim //
-    public void moveZombie() {
-        movezombie = new TranslateTransition(Duration.seconds(20), getZombie_img());
+    public void moveZombie(int duration,int xPos) {
+        movezombie = new TranslateTransition(Duration.seconds(duration), getZombie_img());
+        movezombie.setFromX(xPos);
         movezombie.setToX(-1280);
         movezombie.setCycleCount(1);
         movezombie.play();

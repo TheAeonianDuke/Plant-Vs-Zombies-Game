@@ -133,7 +133,7 @@
          <children>
             <Button id="ingame_menu_btn" layoutX="3.0" layoutY="1.0" mnemonicParsing="false" onAction="#MenuBtn" prefHeight="43.0" prefWidth="121.0" styleClass="sidebar-button-5" stylesheets="@../main/resources/styles/styles.css" />
          </children></AnchorPane>
-      <ImageView id="FallSun" fx:id="FallSun" fitHeight="101.0" fitWidth="44.0" layoutX="529.0" layoutY="-53.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="FallSun" fx:id="FallSun1" fitHeight="101.0" fitWidth="44.0" layoutX="529.0" layoutY="-53.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../main/resources/sun.gif" />
          </image>
