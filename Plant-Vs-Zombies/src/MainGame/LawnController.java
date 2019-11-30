@@ -31,6 +31,7 @@ public class LawnController implements Initializable {
     TranslateTransition movelawnmower;
     TranslateTransition movesun;
     Random get_random = new Random();
+    private int[] buttonSeed = new int[4];
 
     @FXML
     private Pane Lawn;
@@ -555,6 +556,14 @@ public class LawnController implements Initializable {
             System.out.println(event.getSceneX());
             if (event.getGestureSource() != tile && event.getGestureSource()!=exception_tiles && event.getSceneX()>0) {
                 SunCounter.setText(String.valueOf(Integer.parseInt(SunCounter.getText()) - finalPlant.getSun_Cost()));
+                if(elem == sunflower_btn)
+                    buttonSeed[0] = 5;
+                else if(elem == peashooter_btn)
+                    buttonSeed[1] = 5;
+                else if(elem == walnut_btn)
+                    buttonSeed[2] = 10;
+                else
+                    buttonSeed[3] = 10;
                 peashooter_img.setVisible(true);
                 finalPlant.setTilePlaced(tile);
                 Plants_List.add(finalPlant);
@@ -700,28 +709,74 @@ public class LawnController implements Initializable {
 
     public void ButtonActive()
     {
-        if(Integer.parseInt(SunCounter.getText()) > 100)
+        if(Integer.parseInt(SunCounter.getText()) >= 100)
         {
-            sunflower_btn.setDisable(false);
-            peashooter_btn.setDisable(false);
-            walnut_btn.setDisable(false);
-            potato_btn.setDisable(false);
+            if(buttonSeed[0] > 0) {
+                sunflower_btn.setDisable(true);
+                buttonSeed[0]--;
+            }
+            else
+                sunflower_btn.setDisable(false);
+
+            if(buttonSeed[1] > 0) {
+                peashooter_btn.setDisable(true);
+                buttonSeed[1]--;
+            }
+            else
+                peashooter_btn.setDisable(false);
+
+            if(buttonSeed[2] > 0) {
+                walnut_btn.setDisable(true);
+                buttonSeed[2]--;
+            }
+            else
+                walnut_btn.setDisable(false);
+
+            if(buttonSeed[3] > 0) {
+                potato_btn.setDisable(true);
+                buttonSeed[3]--;
+            }
+            else
+                potato_btn.setDisable(false);
         }
 
-        else if(Integer.parseInt(SunCounter.getText()) > 50)
+        else if(Integer.parseInt(SunCounter.getText()) >= 50)
         {
-            sunflower_btn.setDisable(false);
+            if(buttonSeed[0] > 0) {
+                sunflower_btn.setDisable(true);
+                buttonSeed[0]--;
+            }
+            else
+                sunflower_btn.setDisable(false);
+
             peashooter_btn.setDisable(true);
-            walnut_btn.setDisable(false);
-            potato_btn.setDisable(false);
+
+            if(buttonSeed[2] > 0) {
+                walnut_btn.setDisable(true);
+                buttonSeed[2]--;
+            }
+            else
+                walnut_btn.setDisable(false);
+
+            if(buttonSeed[3] > 0) {
+                potato_btn.setDisable(true);
+                buttonSeed[3]--;
+            }
+            else
+                potato_btn.setDisable(false);
         }
 
-        else if(Integer.parseInt(SunCounter.getText()) > 25)
+        else if(Integer.parseInt(SunCounter.getText()) >= 25)
         {
             sunflower_btn.setDisable(true);
             peashooter_btn.setDisable(true);
             walnut_btn.setDisable(true);
-            potato_btn.setDisable(false);
+            if(buttonSeed[2] > 0) {
+                potato_btn.setDisable(true);
+                buttonSeed[2]--;
+            }
+            else
+                potato_btn.setDisable(false);
         }
 
         else
