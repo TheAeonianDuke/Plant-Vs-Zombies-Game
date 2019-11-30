@@ -3,6 +3,7 @@ package MainGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableBooleanValue;
@@ -28,7 +29,6 @@ import java.util.concurrent.Callable;
 public class LawnController implements Initializable {
     TranslateTransition movelawnmower;
     TranslateTransition movesun;
-    TranslateTransition collectsun;
     Random get_random = new Random();
 
     @FXML
@@ -84,6 +84,9 @@ public class LawnController implements Initializable {
     // LawnMower ArrayList //
     volatile ArrayList<ImageView> Lawnmower_List=new ArrayList<>();
 
+    // Collisions ArrayList //
+    volatile ArrayList<ObservableBooleanValue> collisions_list=new ArrayList<>();
+
     public LawnController() {}
 
     // Sun Falling Anim //
@@ -119,7 +122,7 @@ public class LawnController implements Initializable {
         Zombies_List.add(new_zombie);
         Lawn.getChildren().add(new_zombie.getZombie_img());
 
-        createLawnmower();
+
         for(ImageView img: Lawnmower_List)
         {
             for(Default_Zombie zombie : Zombies_List)
@@ -211,7 +214,7 @@ public class LawnController implements Initializable {
                 return obj1.get_other_img().getBoundsInParent().intersects(obj2.getZombie_img().getBoundsInParent());
             }
         }, obj1.get_main_img().boundsInParentProperty(),obj2.getZombie_img().boundsInParentProperty());
-
+        collisions_list.add(collision);
         collision.addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -250,7 +253,7 @@ public class LawnController implements Initializable {
                 return obj1.get_main_img().getBoundsInParent().intersects(obj2.getZombie_img().getBoundsInParent());
             }
         }, obj1.get_main_img().boundsInParentProperty(),obj2.getZombie_img().boundsInParentProperty());
-
+        collisions_list.add(collision);
         collision.addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -277,7 +280,7 @@ public class LawnController implements Initializable {
                 return obj1.getBoundsInParent().intersects(obj2.getZombie_img().getBoundsInParent());
             }
         }, obj1.boundsInParentProperty(),obj2.getZombie_img().boundsInParentProperty());
-
+        collisions_list.add(collision);
         collision.addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -451,6 +454,24 @@ public class LawnController implements Initializable {
 
                 tile.setOpacity(1);
                 tile.setStyle("-fx-background-color: transparent");
+
+                new Thread(() -> {
+                    Platform.runLater(new Runnable() {
+                        public void run() {
+                            elem.setDisable(true);
+                        }
+                    });
+                    try {
+                        Thread.sleep(5000); //5 seconds, obviously replace with your chosen time
+                    }
+                    catch(InterruptedException ex) {
+                    }
+                    Platform.runLater(new Runnable() {
+                        public void run() {
+                            elem.setDisable(false);
+                        }
+                    });
+                }).start();
             }
         });
 
@@ -503,8 +524,11 @@ public class LawnController implements Initializable {
     // Init //
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        createZombie();
+        createLawnmower();
+        createZombie();
+        createZombie();
         createPlants();
+        System.out.println(collisions_list);
 
         FallSun();
 //        triggerLawnMower();
