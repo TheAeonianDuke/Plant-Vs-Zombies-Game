@@ -9,4 +9,7 @@ public class Sun
     public ImageView getSun_token() {
         return sun_token;
     }
+
+
+
 }

@@ -1,34 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Button Delay and create wave">
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Lawn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/MenuBtn.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/MenuBtn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Sun.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/potato-mine.png" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Waves done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/Lawn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/Lawn.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/MainMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/MainMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/MainMenuController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/SplashScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/SplashScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/main/resources/potato.gif" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/main/resources/potato.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/ChooseLevel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/ChooseLevel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/ChooseLevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/ChooseLevelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainGame/Default_Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Default_Zombie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/Lawn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Lawn.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainGame/LawnController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/LawnController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/MainMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/MainMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/PeaShooter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/PeaShooter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/Plants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Plants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/PotatoMine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/PotatoMine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/SplashScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/SplashScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/SunFlower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/SunFlower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Zombie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/potato.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/potato.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainGame/Sun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Sun.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -379,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575112374995</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Waves done">
+      <created>1575114047023</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1575114047023</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,6 +397,7 @@
     <MESSAGE value="Functions for attacking" />
     <MESSAGE value="Button Delay" />
     <MESSAGE value="Button Delay and create wave" />
-    <option name="LAST_COMMIT_MESSAGE" value="Button Delay and create wave" />
+    <MESSAGE value="Waves done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Waves done" />
   </component>
 </project>
