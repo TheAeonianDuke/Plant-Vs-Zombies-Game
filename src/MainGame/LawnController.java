@@ -84,15 +84,14 @@ public class LawnController implements Initializable {
     // LawnMower ArrayList //
     ArrayList<ImageView> Lawnmower_List=new ArrayList<>();
 
-
-
     public LawnController() {}
 
     // Pea Shooting Anim //
     @FXML
-    private void shootPea(ImageView Pea) {
+    private void shootPea(ImageView Pea, ImageView Peashooter) {
         Pea.setVisible(true);
         movepea = new TranslateTransition(Duration.seconds(2), Pea);
+        movepea.setFromX(Peashooter.getX());
         movepea.setToX(1280);
         movepea.setCycleCount(1000);
         movepea.play();
@@ -234,9 +233,11 @@ public class LawnController implements Initializable {
                     System.out.println("collision pea");
                     movepea.stop();
                     obj2.setVisible(false);
-                    movepea.autoReverseProperty();
+                    movepea.playFromStart();
+
                 }
                 else{
+                    obj2.setVisible(true);
                     System.out.println("not colliding");
                 }
             }
@@ -262,7 +263,6 @@ public class LawnController implements Initializable {
         movepea.pause();
 
     }
-
 
     // Drag Over Tile Detection //
     private void DragOver( Button elem, AnchorPane tile, double peashooter_initX, double peashooter_initY, AnchorPane exception_tiles) {
@@ -372,7 +372,7 @@ public class LawnController implements Initializable {
                 peashooter_img.setVisible(true);
                 finalPlant.setTilePlaced(tile);
                 Plants_List.add(finalPlant);
-
+                System.out.println(Plants_List.size());
                 peashooter_img.setLayoutX(tile.getLayoutX() + 25);
                 peashooter_img.setLayoutY(tile.getLayoutY() + 15);
 
@@ -382,19 +382,21 @@ public class LawnController implements Initializable {
                     pea_img.setLayoutY(tile.getLayoutY() + 20);
                     double init_x=pea_img.getLayoutX();
                     double init_y=pea_img.getLayoutY();
-                    shootPea(pea_img);
-                    }
-                for(Plants plant_img: Plants_List)
-                {
-                    for(Default_Zombie zombie : Zombies_List)
-                    {
-                        System.out.println("entereed loop");
-                        if(plant_img.get_other_img()!=null)
+                    shootPea(pea_img,peashooter_img);
+                        for(Plants plant_img: Plants_List)
                         {
-                            collision(zombie.getZombie_img(), plant_img.get_other_img(),pea_img.getLayoutX(),pea_img.getLayoutY());
+                            if(pea_img!=null || plant_img.get_other_img()!=null)
+                            {
+                                for(Default_Zombie zombie : Zombies_List)
+                                {
+                                    System.out.println("entereed loop");
+
+                                    collision(zombie.getZombie_img(), pea_img,pea_img.getLayoutX(),pea_img.getLayoutY());
+                                }
+                            }
                         }
                     }
-                }
+
                 tile.setOpacity(1);
                 tile.setStyle("-fx-background-color: transparent");
             }
@@ -415,7 +417,6 @@ public class LawnController implements Initializable {
             }
         });
     }
-
 
     // Exit To Menu //
     public void ExitToMenu(ActionEvent actionEvent) throws IOException {
