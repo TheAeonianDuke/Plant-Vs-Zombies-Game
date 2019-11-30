@@ -48,7 +48,7 @@ public class LawnController implements Initializable {
     private ImageView Zombie1, Zombie2, Zombie3, Zombie4, Zombie5;
 
     @FXML
-    private ImageView FallSun1;
+    private ImageView FallSun1,FallSun2,FallSun3,FallSun4,FallSun5,FallSun6,FallSun7,FallSun8;
 
     @FXML
     private ImageView LawnMower0, LawnMower1,LawnMower2,LawnMower3,LawnMower4;
@@ -79,8 +79,9 @@ public class LawnController implements Initializable {
     // Peashooter ArrayList //
     volatile ArrayList<Plants> Plants_List=new ArrayList<>();
 
-    // Zombies ArrayList //
-//    volatile ArrayList<Default_Zombie> Zombies_List=new ArrayList<>();
+    // FallSun ArrayList //
+    ArrayList<Double> Sun_List=new ArrayList<>();
+    ArrayList<FallSun> FallSun_List=new ArrayList<>();
 
     // Zombies ArrayList //
     volatile ArrayList<Default_Zombie> Zombies_Wave_1=new ArrayList<>();
@@ -98,12 +99,7 @@ public class LawnController implements Initializable {
 
     // Sun Falling Anim //
     @FXML
-    private void FallSun() {
-        movesun = new TranslateTransition(Duration.seconds(6), FallSun1);
-        movesun.setToY(FallSun1.getLayoutY() + 760);
-//        move.setCycleCount(10);
-        movesun.play();
-    }
+
 
     // Add Lawnmower in List //
     private void createLawnmower()
@@ -115,29 +111,23 @@ public class LawnController implements Initializable {
         Lawnmower_List.add(LawnMower4);
     }
 
-    // Create Default Zombies //
-//    private void createZombie()
-//    {
-//        Zombieimg.add(Zombie1.getLayoutY());
-//        Zombieimg.add(Zombie2.getLayoutY());
-//        Zombieimg.add(Zombie3.getLayoutY());
-//        Zombieimg.add(Zombie4.getLayoutY());
-//        Zombieimg.add(Zombie5.getLayoutY());
-//
-//        Default_Zombie new_zombie=new Default_Zombie(Zombieimg.get(get_random.nextInt(Zombieimg.size())));
-//        new_zombie.moveZombie();
-//        Zombies_List.add(new_zombie);
-//        Lawn.getChildren().add(new_zombie.getZombie_img());
-//
-//
-//        for(ImageView img: Lawnmower_List)
-//        {
-//            for(Default_Zombie zombie : Zombies_List)
-//            {
-//                collisionLawnMowerZombie(img,zombie);
-//            }
-//        }
-//    }
+    private void generateSun()
+    {
+        Sun_List.add(FallSun1.getLayoutX());
+        Sun_List.add(FallSun2.getLayoutX());
+        Sun_List.add(FallSun3.getLayoutX());
+        Sun_List.add(FallSun4.getLayoutX());
+        Sun_List.add(FallSun5.getLayoutX());
+        Sun_List.add(FallSun6.getLayoutX());
+        Sun_List.add(FallSun7.getLayoutX());
+        Sun_List.add(FallSun8.getLayoutX());
+
+        for (int i = 0; i < Sun_List.size() ; i++) {
+            FallSun fall_sun = new FallSun(SunCounter, Sun_List.get(get_random.nextInt(Sun_List.size())));
+            Lawn.getChildren().add(fall_sun.getSun_img());
+            FallSun_List.add(fall_sun);
+        }
+    }
 
     public void createWaves(int wave_1 , int wave_2 , int wave_3)
     {
@@ -365,7 +355,8 @@ public class LawnController implements Initializable {
                     {
                         ((PeaShooter) obj1).getMovepea().stop();
                         obj1.get_other_img().setVisible(false);
-                        attack(obj1,obj2);
+                        if(obj1!=null && obj2!=null){
+                        attack(obj1,obj2);}
                         ((PeaShooter) obj1).getMovepea().play();
                     }
 
@@ -429,6 +420,18 @@ public class LawnController implements Initializable {
                 {
 //                    System.out.println("collision LawnMower");
                     obj2.getZombie_img().setVisible(false);
+                    if(Zombies_Wave_1.contains(obj2))
+                    {
+                        Zombies_Wave_1.remove(obj2);
+                    }
+                    else if(Zombies_Wave_2.contains(obj2))
+                    {
+                        Zombies_Wave_2.remove(obj2);
+                    }
+                    else if(Zombies_Wave_3.contains(obj2))
+                    {
+                        Zombies_Wave_3.remove(obj2);
+                    }
                     triggerLawnMower(obj1);
                 }
                 else{
@@ -442,7 +445,6 @@ public class LawnController implements Initializable {
     // LawnMower Anim //
     private void triggerLawnMower(ImageView lawnmower) {
         movelawnmower = new TranslateTransition(Duration.seconds(3), lawnmower);
-//        movelawnmower.setDelay(Duration.millis(7900));
         movelawnmower.setToX(LawnMower0.getLayoutX() + 1000);
         movelawnmower.setCycleCount(1);
         movelawnmower.play();
@@ -726,6 +728,10 @@ public class LawnController implements Initializable {
         @Override
         public void handle(ActionEvent actionEvent) {
             createPlants();
+            if(Zombies_Wave_1.size() == 0)
+                releaseWave_2();
+            if(Zombies_Wave_1.size() == 0 && Zombies_Wave_2.size()==0)
+                releaseWave_3();
         }
     }
 
@@ -754,6 +760,33 @@ public class LawnController implements Initializable {
         timeline.play();
     }
 
+    private class SunTimeHandler implements EventHandler<ActionEvent>
+    {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            fall_sun();
+        }
+    }
+    public void fall_sun()
+    {
+        for (FallSun sun:FallSun_List) {
+            if (!sun.isIsmove())
+            {
+                sun.FallSun();
+                break;
+            }
+        }
+    }
+
+    public void suntimer()
+    {
+        KeyFrame kf = new KeyFrame(Duration.seconds(6),new SunTimeHandler());
+        Timeline timeline = new Timeline(kf);
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+
     // Init //
 
     @Override
@@ -763,11 +796,11 @@ public class LawnController implements Initializable {
         setupTime();
         createWaves(2,3,5);
         releaseWave_1();
-//        releaseWave_2();
-//        releaseWave_3();
+        generateSun();
+        suntimer();
         System.out.println(collisions_list);
 
-        FallSun();
+
 //        triggerLawnMower();
 
         TilePanes = new AnchorPane[]{tile00, tile01, tile02, tile03, tile04,

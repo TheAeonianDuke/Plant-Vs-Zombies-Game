@@ -133,7 +133,7 @@
          <children>
             <Button id="ingame_menu_btn" layoutX="3.0" layoutY="1.0" mnemonicParsing="false" onAction="#MenuBtn" prefHeight="43.0" prefWidth="121.0" styleClass="sidebar-button-5" stylesheets="@../main/resources/styles/styles.css" />
          </children></AnchorPane>
-      <ImageView id="FallSun" fx:id="FallSun1" fitHeight="101.0" fitWidth="44.0" layoutX="529.0" layoutY="-53.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="FallSun" fx:id="FallSun1" fitHeight="101.0" fitWidth="44.0" layoutX="373.0" layoutY="-43.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../main/resources/sun.gif" />
          </image>
@@ -182,6 +182,41 @@
       <ImageView fx:id="walnut" fitHeight="69.0" fitWidth="62.0" layoutX="-63.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../main/resources/walnut_full_life.gif" />
+         </image>
+      </ImageView>
+      <ImageView id="FallSun" fx:id="FallSun2" fitHeight="101.0" fitWidth="44.0" layoutX="422.0" layoutY="-43.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../main/resources/sun.gif" />
+         </image>
+      </ImageView>
+      <ImageView id="FallSun" fx:id="FallSun3" fitHeight="101.0" fitWidth="44.0" layoutX="526.0" layoutY="-43.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../main/resources/sun.gif" />
+         </image>
+      </ImageView>
+      <ImageView id="FallSun" fx:id="FallSun4" fitHeight="101.0" fitWidth="44.0" layoutX="753.0" layoutY="-43.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../main/resources/sun.gif" />
+         </image>
+      </ImageView>
+      <ImageView id="FallSun" fx:id="FallSun5" fitHeight="101.0" fitWidth="44.0" layoutX="661.0" layoutY="-43.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../main/resources/sun.gif" />
+         </image>
+      </ImageView>
+      <ImageView id="FallSun" fx:id="FallSun6" fitHeight="101.0" fitWidth="44.0" layoutX="925.0" layoutY="-43.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../main/resources/sun.gif" />
+         </image>
+      </ImageView>
+      <ImageView id="FallSun" fx:id="FallSun7" fitHeight="101.0" fitWidth="44.0" layoutX="1026.0" layoutY="-54.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../main/resources/sun.gif" />
+         </image>
+      </ImageView>
+      <ImageView id="FallSun" fx:id="FallSun8" fitHeight="101.0" fitWidth="44.0" layoutX="1108.0" layoutY="-43.0" onMousePressed="#CollectSun" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../main/resources/sun.gif" />
          </image>
       </ImageView>
     </children>
