@@ -29,9 +29,59 @@ public abstract class Plants {
         TilePlaced = tilePlaced;
     }
 
-
     public abstract ImageView get_main_img();
 
     public abstract ImageView get_other_img();
 
+    public String getPlant_ID() {
+        return plant_ID;
+    }
+
+    public int getHealth() {
+        return Health;
+    }
+
+    public int getSun_Cost() {
+        return Sun_Cost;
+    }
+
+    public int getAttack_power() {
+        return Attack_power;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public AnchorPane getTilePlaced() {
+        return TilePlaced;
+    }
+
+    public int getRecharge() {
+        return Recharge;
+    }
+
+    public int getxPos() {
+        return xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+
+    public void setHealth(int health) {
+        Health = health;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
+
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
+    }
 }

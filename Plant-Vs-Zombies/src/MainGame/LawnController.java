@@ -102,7 +102,6 @@ public class LawnController implements Initializable {
     private void FallSun() {
         movesun = new TranslateTransition(Duration.seconds(6), FallSun);
         movesun.setToY(FallSun.getLayoutY() + 760);
-//        move.setCycleCount(10);
         movesun.play();
     }
 
@@ -123,19 +122,31 @@ public class LawnController implements Initializable {
         movezombie.setCycleCount(1);
         movezombie.play();
         return movezombie;
-//        movezombie.setOnFinished(new EventHandler<ActionEvent>() {
-//
-//            @Override
-//            public void handle(ActionEvent arg0) {
-//
-//            }
-//        });
     }
 
     // Attach Mechanism //
     private void attack(Plants plants , Default_Zombie zombie)
     {
-        zombie
+        if(!zombie.isDead()) {
+            zombie.setHealth(zombie.getHealth() - plants.getAttack_power());
+            if(zombie.getHealth() <= 0){
+                zombie.setHealth(0);
+                zombie.setDead(true);
+                Lawn.getChildren().remove(zombie.getZombie_img());
+            }
+        }
+    }
+
+    private void attack(Default_Zombie zombie , Plants plants)
+    {
+        if(!plants.isDead()) {
+            plants.setHealth(plants.getHealth() - zombie.getAttack());
+            if(plants.getHealth() <= 0){
+                plants.setHealth(0);
+                plants.setDead(true);
+                plants.getTilePlaced().getChildren().removeAll();
+            }
+        }
     }
 
     // Create Default Zombies //
@@ -148,7 +159,7 @@ public class LawnController implements Initializable {
         Zombieimg.add(Zombie4.getLayoutY());
         Zombieimg.add(Zombie5.getLayoutY());
 
-        Default_Zombie new_zombie=new Default_Zombie(Zombieimg.get(get_random.nextInt(Zombieimg.size())));
+        Default_Zombie new_zombie=new Default_Zombie(200,20,false,Zombieimg.get(get_random.nextInt(Zombieimg.size())));
         Zombies_List.add(new_zombie);
         Lawn.getChildren().add(new_zombie.getZombie_img());
 
@@ -184,7 +195,6 @@ public class LawnController implements Initializable {
         });
 
         peashooter_btn.setOnMousePressed(event -> {
-//            System.out.println("lol pressed");
             for (int i =0 ; i<45; i++) {
                 DragOver(peashooter_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu);
             }
@@ -285,7 +295,6 @@ public class LawnController implements Initializable {
     // LawnMower Anim //
     private void triggerLawnMower(ImageView lawnmower) {
         movelawnmower = new TranslateTransition(Duration.seconds(3), lawnmower);
-//        movelawnmower.setDelay(Duration.millis(7900));
         movelawnmower.setToX(LawnMower0.getLayoutX() + 1000);
         movelawnmower.setCycleCount(1);
         movelawnmower.play();
@@ -351,7 +360,6 @@ public class LawnController implements Initializable {
                 pea_img.setLayoutX(event.getSceneX() - 10);
                 pea_img.setLayoutY(event.getSceneY() - 10);
             }
-//                System.out.println("Mouse Pressed Detected!");
             event.consume();
         });
 
@@ -363,16 +371,12 @@ public class LawnController implements Initializable {
                 pea_img.setLayoutX(event.getSceneX() - 10);
                 pea_img.setLayoutY(event.getSceneY() - 10);
             }
-//                System.out.println("Dragging Element Detected!");
         });
 
         elem.setOnDragDetected(event -> {
-//                new_peashooter=new ImageView("resources/pea_shooter.gif");
             peashooter_img.setVisible(true);
             peashooter_img.startFullDrag();
             peashooter_img.setMouseTransparent(true);
-//                peashooter_anim.startFullDrag();
-//                peashooter_anim.setMouseTransparent(true);
             if(pea_img!=null) {
                 pea_img.startFullDrag();
                 pea_img.setMouseTransparent(true);
@@ -391,10 +395,8 @@ public class LawnController implements Initializable {
 
         tile.setOnMouseDragOver(event -> {
             if (event.getGestureSource() != tile && event.getGestureSource()!=exception_tiles  ) {
-//                    System.out.println("over");
                 tile.setStyle("-fx-background-color: #3cb371; -fx-border-color: #ffff");
                 tile.setOpacity(0.5);
-//                    tile.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 20, 0, 0, 0)");
             }
         });
 
