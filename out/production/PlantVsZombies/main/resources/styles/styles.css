@@ -285,3 +285,35 @@
     -fx-scale-y: 0.90;
     -fx-scale-x: 0.90;
 }
+
+/*Win game screen*/
+
+.winscreen
+{
+    -fx-background-color: #231F20 ;
+}
+
+.losescreen
+{
+    -fx-background-color: #000000;
+}
+
+.winbutton
+{
+    -fx-background-image: url("../exit_to_menu.png");
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 20, 0, 0, 0);
+    -fx-border-color: orange ;
+    -fx-border-width: 5 ;
+    /*-fx-background-color: transparent;*/
+    -fx-scale-y: 1.0;
+}
+
+.winbutton:pressed
+{
+    -fx-background-image: url("../exit_to_menu.png");
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 20, 0, 0, 0);
+    -fx-border-color: orange ;
+    -fx-border-width: 5 ;
+    /*-fx-background-color: transparent;*/
+    -fx-scale-y: 0.9;
+}
