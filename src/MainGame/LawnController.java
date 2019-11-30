@@ -152,10 +152,34 @@ public class LawnController implements Initializable {
         {
             for(Default_Zombie zombie : Zombies_List)
             {
-                collision(zombie.getZombie_img(), img);
+                collisionLawnMowerZombie(img,zombie);
             }
         }
+    }
 
+    // Attach Mechanism //
+    private void attack(Plants plants , Default_Zombie zombie)
+    {
+        if(!zombie.isDead()) {
+            zombie.setHealth(zombie.getHealth() - plants.getAttack_power());
+            if(zombie.getHealth() <= 0){
+                zombie.setHealth(0);
+                zombie.setDead(true);
+                Lawn.getChildren().remove(zombie.getZombie_img());
+            }
+        }
+    }
+
+    private void attack(Default_Zombie zombie , Plants plants)
+    {
+        if(!plants.isDead()) {
+            plants.setHealth(plants.getHealth() - zombie.getAttack());
+            if(plants.getHealth() <= 0){
+                plants.setHealth(0);
+                plants.setDead(true);
+                plants.getTilePlaced().getChildren().removeAll();
+            }
+        }
     }
 
     private void createPlants()
@@ -191,39 +215,39 @@ public class LawnController implements Initializable {
         System.out.println(Plants_List.size());
     }
 
-    private void collision(ImageView obj1, ImageView obj2)
+    private void collisionPeaZombie(Plants obj1, Default_Zombie obj2)
     {
         ObservableBooleanValue collision= Bindings.createBooleanBinding(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                return obj1.getBoundsInParent().intersects(obj2.getBoundsInParent());
+                return obj1.get_other_img().getBoundsInParent().intersects(obj2.getZombie_img().getBoundsInParent());
             }
-        }, obj1.boundsInParentProperty(),obj2.boundsInParentProperty());
+        }, obj1.get_main_img().boundsInParentProperty(),obj2.getZombie_img().boundsInParentProperty());
 
         collision.addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue)
                 {
-                    obj1.setVisible(false);
-                    triggerLawnMower(obj2);
-                    System.out.println(obj2.getLayoutX() + " " + obj1.getLayoutX());
+                    System.out.println(obj1.getId()+" collision pea");
+                    attack(obj1,obj2);
                 }
                 else{
-                    System.out.println("not colliding");
+
+//                    System.out.println("not colliding");
                 }
             }
         });
     }
 
-    private void collision(ImageView obj1, ImageView obj2, double init_x, double init_y)
+    private void collisionPlantZombie(Plants obj1, Default_Zombie obj2)
     {
         ObservableBooleanValue collision= Bindings.createBooleanBinding(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                return obj1.getBoundsInParent().intersects(obj2.getBoundsInParent());
+                return obj1.get_main_img().getBoundsInParent().intersects(obj2.getZombie_img().getBoundsInParent());
             }
-        }, obj1.boundsInParentProperty(),obj2.boundsInParentProperty());
+        }, obj1.get_main_img().boundsInParentProperty(),obj2.getZombie_img().boundsInParentProperty());
 
         collision.addListener(new ChangeListener<Boolean>() {
             @Override
@@ -232,12 +256,37 @@ public class LawnController implements Initializable {
                 {
                     System.out.println("collision pea");
                     movepea.stop();
-                    obj2.setVisible(false);
+                    obj1.get_main_img().setVisible(false);
                     movepea.playFromStart();
-
                 }
                 else{
-                    obj2.setVisible(true);
+                    obj1.get_main_img().setVisible(true);
+                    System.out.println("not colliding");
+                }
+            }
+        });
+    }
+
+    private void collisionLawnMowerZombie(ImageView obj1, Default_Zombie obj2)
+    {
+        ObservableBooleanValue collision= Bindings.createBooleanBinding(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                return obj1.getBoundsInParent().intersects(obj2.getZombie_img().getBoundsInParent());
+            }
+        }, obj1.boundsInParentProperty(),obj2.getZombie_img().boundsInParentProperty());
+
+        collision.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue)
+                {
+                    System.out.println("collision");
+                    obj2.getZombie_img().setVisible(false);
+                    triggerLawnMower(obj1);
+                }
+                else{
+//                    obj1.setVisible(true);
                     System.out.println("not colliding");
                 }
             }
@@ -340,15 +389,7 @@ public class LawnController implements Initializable {
             }
         });
 
-        elem.setOnMouseDragReleased(event -> peashooter_img.setVisible(false));
-
-        elem.setOnDragDone(event -> peashooter_img.setVisible(false));
-
-        elem.setOnDragDropped(event -> peashooter_img.setVisible(false));
-
         elem.setOnMouseReleased(event -> peashooter_img.setVisible(false));
-
-        elem.setOnMouseDragExited(event -> peashooter_img.setVisible(false));
 
         tile.setOnMouseDragOver(event -> {
             if (event.getGestureSource() != tile && event.getGestureSource()!=exception_tiles  ) {
@@ -389,9 +430,8 @@ public class LawnController implements Initializable {
                             {
                                 for(Default_Zombie zombie : Zombies_List)
                                 {
-                                    System.out.println("entereed loop");
-
-                                    collision(zombie.getZombie_img(), pea_img,pea_img.getLayoutX(),pea_img.getLayoutY());
+                                    collisionPeaZombie(plant_img,zombie);
+                                    collisionPlantZombie(plant_img,zombie);
                                 }
                             }
                         }
