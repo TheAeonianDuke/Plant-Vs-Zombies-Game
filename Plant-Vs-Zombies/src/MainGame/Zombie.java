@@ -18,24 +18,4 @@ public abstract class Zombie
     }
 
     public abstract ImageView getZombie_img();
-
-    public int getAttack() {
-        return Attack;
-    }
-
-    public boolean isDead() {
-        return isDead;
-    }
-
-    public int getHealth() {
-        return Health;
-    }
-
-    public void setDead(boolean dead) {
-        isDead = dead;
-    }
-
-    public void setHealth(int health) {
-        Health = health;
-    }
 }

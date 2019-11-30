@@ -1,15 +1,11 @@
 package MainGame;
 
-import javafx.animation.TranslateTransition;
-import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 
 public abstract class Plants {
     private static int idgen=0;
     private int id;
-    private TranslateTransition movepea;
     protected final String plant_ID;
     protected int Health;
     protected final int Sun_Cost;
@@ -33,23 +29,13 @@ public abstract class Plants {
         Recharge = recharge;
     }
 
-    // Pea Shooting Anim //
-    public void shootPea(ImageView Pea, ImageView Peashooter) {
-        Pea.setVisible(true);
-        movepea = new TranslateTransition(Duration.seconds(2), Pea);
-        movepea.setFromX(Peashooter.getX());
-        movepea.setToX(1280);
-        movepea.setCycleCount(1000);
-        movepea.play();
-    }
+
 
     public int getId() {
         return id;
     }
 
-    public TranslateTransition getMovepea() {
-        return movepea;
-    }
+
 
     public void setTilePlaced(AnchorPane tilePlaced) {
         TilePlaced = tilePlaced;

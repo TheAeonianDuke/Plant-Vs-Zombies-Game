@@ -3,31 +3,14 @@ package MainGame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-import java.io.Serializable;
 
-public class ChooseLevelController implements Serializable
-{
+public class ChooseLevelController {
+
     @FXML
     private Pane chooseLevel;
-
-    @FXML
-    private Button Level1;
-
-    @FXML
-    private Button Level2;
-
-    @FXML
-    private Button Level3;
-
-    @FXML
-    private Button Level4;
-
-    @FXML
-    private Button Level5;
 
     public void goToLevelOne(ActionEvent actionEvent)
     {
