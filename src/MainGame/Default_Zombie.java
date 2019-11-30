@@ -1,19 +1,35 @@
 package MainGame;
 
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
+
+
 
 public class Default_Zombie {
+
+
+    private TranslateTransition movezombie;
     private static int idgen=0;
     private int id;
-    private int Health=200;
-    private final int Attack=50;
+    private int Health=150;
+    private final int Attack=20;
 
     private boolean isDead=false;
     private double yPos;
 
     public ImageView getZombie_img() {
         return zombie_img;
+    }
+
+    // Move Zombie Anim //
+    public void moveZombie() {
+        movezombie = new TranslateTransition(Duration.seconds(20), getZombie_img());
+        movezombie.setToX(-1280);
+        movezombie.setCycleCount(1);
+        movezombie.play();
+
     }
 
     private ImageView zombie_img= new ImageView("main/resources/zombie_normal.gif");
@@ -27,6 +43,10 @@ public class Default_Zombie {
         zombie_img.setPreserveRatio(true);
         zombie_img.setX(1280);
         zombie_img.setLayoutY(yPos-15);
+    }
+
+    public TranslateTransition getMovezombie() {
+        return movezombie;
     }
 
     public int getHealth() {

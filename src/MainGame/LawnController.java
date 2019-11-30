@@ -25,9 +25,7 @@ import java.util.concurrent.Callable;
 
 public class LawnController implements Initializable {
     TranslateTransition movelawnmower;
-    TranslateTransition movezombie;
     TranslateTransition movesun;
-    TranslateTransition movepea;
     TranslateTransition collectsun;
     Random get_random = new Random();
 
@@ -76,26 +74,15 @@ public class LawnController implements Initializable {
     ArrayList<Double> Zombieimg = new ArrayList<>();
 
     // Peashooter ArrayList //
-    ArrayList<Plants> Plants_List=new ArrayList<>();
+    volatile ArrayList<Plants> Plants_List=new ArrayList<>();
 
     // Zombies ArrayList //
-    ArrayList<Default_Zombie> Zombies_List=new ArrayList<>();
+    volatile ArrayList<Default_Zombie> Zombies_List=new ArrayList<>();
 
     // LawnMower ArrayList //
-    ArrayList<ImageView> Lawnmower_List=new ArrayList<>();
+    volatile ArrayList<ImageView> Lawnmower_List=new ArrayList<>();
 
     public LawnController() {}
-
-    // Pea Shooting Anim //
-    @FXML
-    private void shootPea(ImageView Pea, ImageView Peashooter) {
-        Pea.setVisible(true);
-        movepea = new TranslateTransition(Duration.seconds(2), Pea);
-        movepea.setFromX(Peashooter.getX());
-        movepea.setToX(1280);
-        movepea.setCycleCount(1000);
-        movepea.play();
-    }
 
     // Sun Falling Anim //
     @FXML
@@ -116,26 +103,9 @@ public class LawnController implements Initializable {
         Lawnmower_List.add(LawnMower4);
     }
 
-    // Move Zombie Anim //
-    private TranslateTransition moveZombie(ImageView zombie_img) {
-        movezombie = new TranslateTransition(Duration.seconds(15), zombie_img);
-        movezombie.setToX(-1280);
-        movezombie.setCycleCount(1);
-        movezombie.play();
-        return movezombie;
-//        movezombie.setOnFinished(new EventHandler<ActionEvent>() {
-//
-//            @Override
-//            public void handle(ActionEvent arg0) {
-//
-//            }
-//        });
-    }
-
     // Create Default Zombies //
     private void createZombie()
     {
-
         Zombieimg.add(Zombie1.getLayoutY());
         Zombieimg.add(Zombie2.getLayoutY());
         Zombieimg.add(Zombie3.getLayoutY());
@@ -143,10 +113,10 @@ public class LawnController implements Initializable {
         Zombieimg.add(Zombie5.getLayoutY());
 
         Default_Zombie new_zombie=new Default_Zombie(Zombieimg.get(get_random.nextInt(Zombieimg.size())));
+        new_zombie.moveZombie();
         Zombies_List.add(new_zombie);
         Lawn.getChildren().add(new_zombie.getZombie_img());
 
-        TranslateTransition zombieanim=moveZombie(new_zombie.getZombie_img());
         createLawnmower();
         for(ImageView img: Lawnmower_List)
         {
@@ -158,14 +128,30 @@ public class LawnController implements Initializable {
     }
 
     // Attach Mechanism //
-    private void attack(Plants plants , Default_Zombie zombie)
+    private synchronized void attack(Plants plants , Default_Zombie zombie)
     {
         if(!zombie.isDead()) {
             zombie.setHealth(zombie.getHealth() - plants.getAttack_power());
+            System.out.println(zombie.getHealth());
             if(zombie.getHealth() <= 0){
+                System.out.println("Zombie Dead");
                 zombie.setHealth(0);
                 zombie.setDead(true);
+//                movezombie.stop();
+//                zombie.getZombie_img().setVisible(false);
                 Lawn.getChildren().remove(zombie.getZombie_img());
+                zombie.getMovezombie().stop();
+                Zombies_List.remove(zombie);
+//                Iterator<Default_Zombie> i = Zombies_List.iterator();
+//                while (i.hasNext()){
+//                    Default_Zombie z=i.next();
+//                    if(z.getId()==zombie.getId())
+//                    {
+//                        zombie.getMovezombie().stop();
+//                        Zombies_List.remove(z);
+//                    }
+//                }
+
             }
         }
     }
@@ -230,10 +216,13 @@ public class LawnController implements Initializable {
                 if(newValue)
                 {
                     System.out.println(obj1.getId()+" collision pea");
+                    obj1.getMovepea().stop();
+                    obj1.get_other_img().setVisible(false);
                     attack(obj1,obj2);
+                    obj1.getMovepea().play();
                 }
                 else{
-
+                    obj1.get_other_img().setVisible(true);
 //                    System.out.println("not colliding");
                 }
             }
@@ -255,9 +244,9 @@ public class LawnController implements Initializable {
                 if(newValue)
                 {
                     System.out.println("collision pea");
-                    movepea.stop();
+                    obj1.getMovepea().stop();
                     obj1.get_main_img().setVisible(false);
-                    movepea.playFromStart();
+                    obj1.getMovepea().playFromStart();
                 }
                 else{
                     obj1.get_main_img().setVisible(true);
@@ -281,13 +270,13 @@ public class LawnController implements Initializable {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue)
                 {
-                    System.out.println("collision");
+                    System.out.println("collision LawnMower");
                     obj2.getZombie_img().setVisible(false);
                     triggerLawnMower(obj1);
                 }
                 else{
 //                    obj1.setVisible(true);
-                    System.out.println("not colliding");
+//                    System.out.println("not colliding");
                 }
             }
         });
@@ -307,9 +296,9 @@ public class LawnController implements Initializable {
     private void MenuBtn(javafx.event.ActionEvent actionEvent) throws IOException {
         menu_panel.setVisible(true);
         movelawnmower.pause();
-        movezombie.pause();
+//        movezombie.pause();
         movesun.pause();
-        movepea.pause();
+//        movepea.pause();
 
     }
 
@@ -320,7 +309,7 @@ public class LawnController implements Initializable {
         if(elem.getId().equals("peashooter_btn"))
         {
 //            System.out.println("lmao");
-            plant=new PeaShooter(100,100,20,false,null,5);
+            plant=new PeaShooter(100,100,50,false,null,5);
             Lawn.getChildren().add(plant.get_main_img());
             Lawn.getChildren().add(plant.get_other_img());
         }
@@ -423,7 +412,7 @@ public class LawnController implements Initializable {
                     pea_img.setLayoutY(tile.getLayoutY() + 20);
                     double init_x=pea_img.getLayoutX();
                     double init_y=pea_img.getLayoutY();
-                    shootPea(pea_img,peashooter_img);
+                    finalPlant.shootPea(pea_img,peashooter_img);
                         for(Plants plant_img: Plants_List)
                         {
                             if(pea_img!=null || plant_img.get_other_img()!=null)
@@ -468,9 +457,9 @@ public class LawnController implements Initializable {
     public void ReturnGame(ActionEvent actionEvent) {
         menu_panel.setVisible(false);
         movelawnmower.play();
-        movezombie.play();
+//        movezombie.play();
         movesun.play();
-        movepea.play();
+//        movepea.play();
     }
 
     public void CollectSun(MouseEvent actionEvent)
@@ -487,15 +476,13 @@ public class LawnController implements Initializable {
     }
 
     // Init //
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        createZombie();
-        createZombie();
+//        createZombie();
         createPlants();
+
         FallSun();
 //        triggerLawnMower();
-
 
         TilePanes = new AnchorPane[]{tile00, tile01, tile02, tile03, tile04,
                                     tile10, tile11, tile12, tile13, tile14,
@@ -506,8 +493,5 @@ public class LawnController implements Initializable {
                                     tile60, tile61, tile62, tile63, tile64,
                                     tile70, tile71, tile72, tile73, tile74,
                                     tile80, tile81, tile82, tile83, tile84};
-
-
-
     }
 }
