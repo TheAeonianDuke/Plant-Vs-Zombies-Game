@@ -607,49 +607,49 @@ public class LawnController implements Initializable {
                 tile.setOpacity(1);
                 tile.setStyle("-fx-background-color: transparent");
 
-                System.out.println(elem.getId());
-
-                if(elem.getId().equals("potato_btn")) {
-                    new Thread(() -> {
-                        Platform.runLater(() -> elem.setDisable(true));
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException ex) {
-                        }
-                        Platform.runLater(() -> elem.setDisable(false));
-                    }).start();
-                }
-
-                if(elem.getId().equals("sunflower_btn")){
-                    new Thread(() -> {
-                        Platform.runLater(() -> elem.setDisable(true));
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException ex) {
-                        }
-                        Platform.runLater(() -> elem.setDisable(false));
-                    }).start();
-                }
-                if(elem.getId().equals("peashooter_btn")) {
-                    new Thread(() -> {
-                        Platform.runLater(() -> elem.setDisable(true));
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException ex) {
-                        }
-                        Platform.runLater(() -> elem.setDisable(false));
-                    }).start();
-                }
-                if(elem.getId().equals("walnut_btn")) {
-                    new Thread(() -> {
-                        Platform.runLater(() -> elem.setDisable(true));
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException ex) {
-                        }
-                        Platform.runLater(() -> elem.setDisable(false));
-                    }).start();
-                }
+//                System.out.println(elem.getId());
+//
+//                if(elem.getId().equals("potato_btn")) {
+//                    new Thread(() -> {
+//                        Platform.runLater(() -> elem.setDisable(true));
+//                        try {
+//                            Thread.sleep(5000);
+//                        } catch (InterruptedException ex) {
+//                        }
+//                        Platform.runLater(() -> elem.setDisable(false));
+//                    }).start();
+//                }
+//
+//                if(elem.getId().equals("sunflower_btn")){
+//                    new Thread(() -> {
+//                        Platform.runLater(() -> elem.setDisable(true));
+//                        try {
+//                            Thread.sleep(5000);
+//                        } catch (InterruptedException ex) {
+//                        }
+//                        Platform.runLater(() -> elem.setDisable(false));
+//                    }).start();
+//                }
+//                if(elem.getId().equals("peashooter_btn")) {
+//                    new Thread(() -> {
+//                        Platform.runLater(() -> elem.setDisable(true));
+//                        try {
+//                            Thread.sleep(5000);
+//                        } catch (InterruptedException ex) {
+//                        }
+//                        Platform.runLater(() -> elem.setDisable(false));
+//                    }).start();
+//                }
+//                if(elem.getId().equals("walnut_btn")) {
+//                    new Thread(() -> {
+//                        Platform.runLater(() -> elem.setDisable(true));
+//                        try {
+//                            Thread.sleep(5000);
+//                        } catch (InterruptedException ex) {
+//                        }
+//                        Platform.runLater(() -> elem.setDisable(false));
+//                    }).start();
+//                }
             }
         });
 
@@ -698,20 +698,86 @@ public class LawnController implements Initializable {
 //        });
     }
 
+    public void ButtonActive()
+    {
+        if(Integer.parseInt(SunCounter.getText()) > 100)
+        {
+            sunflower_btn.setDisable(false);
+            peashooter_btn.setDisable(false);
+            walnut_btn.setDisable(false);
+            potato_btn.setDisable(false);
+        }
+
+        else if(Integer.parseInt(SunCounter.getText()) > 50)
+        {
+            sunflower_btn.setDisable(false);
+            peashooter_btn.setDisable(true);
+            walnut_btn.setDisable(false);
+            potato_btn.setDisable(false);
+        }
+
+        else if(Integer.parseInt(SunCounter.getText()) > 25)
+        {
+            sunflower_btn.setDisable(true);
+            peashooter_btn.setDisable(true);
+            walnut_btn.setDisable(true);
+            potato_btn.setDisable(false);
+        }
+
+        else
+        {
+            sunflower_btn.setDisable(true);
+            peashooter_btn.setDisable(true);
+            walnut_btn.setDisable(true);
+            potato_btn.setDisable(true);
+        }
+    }
+
+    private class TimeHandler implements EventHandler<ActionEvent>
+    {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            createPlants();
+        }
+    }
+
+    private class ButtonHide implements EventHandler<ActionEvent>
+    {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+        ButtonActive();
+        }
+
+    }
+
+    public void setupTime()
+    {
+        KeyFrame kf = new KeyFrame(Duration.seconds(1),new ButtonHide());
+        Timeline timeline = new Timeline(kf);
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+    public void setupTimelines()
+    {
+        KeyFrame kf = new KeyFrame(Duration.seconds(1),new TimeHandler());
+        Timeline timeline = new Timeline(kf);
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
 
     // Init //
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         createLawnmower();
-        createPlants();
         createWaves(2,3,5);
+        setupTimelines();
+        setupTime();
         releaseWave_1();
-//        releaseWave_2();
-//        releaseWave_3();
+        FallSun();
         System.out.println(collisions_list);
 
-        FallSun();
-//        triggerLawnMower();
 
         TilePanes = new AnchorPane[]{tile00, tile01, tile02, tile03, tile04,
                 tile10, tile11, tile12, tile13, tile14,

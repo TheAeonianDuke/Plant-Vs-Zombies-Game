@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Waves done">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Validation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/Default_Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Default_Zombie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainGame/LawnController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/LawnController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/Sun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Sun.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -365,7 +362,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575114047023</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Validation">
+      <created>1575128983352</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1575128983352</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,6 +402,7 @@
     <MESSAGE value="Button Delay" />
     <MESSAGE value="Button Delay and create wave" />
     <MESSAGE value="Waves done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Waves done" />
+    <MESSAGE value="Validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Validation" />
   </component>
 </project>
