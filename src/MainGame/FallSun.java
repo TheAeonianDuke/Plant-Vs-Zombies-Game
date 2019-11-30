@@ -15,6 +15,9 @@ public class FallSun {
 
     private final ImageView sun_img= new ImageView("main/resources/sun.gif");
 
+    public FallSun() {
+    }
+
     public FallSun(Text SunCounter, Double xPos) {
         sun_img.setLayoutX(xPos);
         sun_img.setLayoutY(-60);
@@ -34,6 +37,10 @@ public class FallSun {
                 SunCounter.setText(String.valueOf(Integer.parseInt(SunCounter.getText()) + suncounter));
             }
         });
+    }
+
+    public TranslateTransition getMovesun() {
+        return movesun;
     }
 
     public ImageView getSun_img() {
