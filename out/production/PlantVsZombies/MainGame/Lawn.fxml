@@ -62,9 +62,9 @@
          </children></AnchorPane>
       <AnchorPane layoutX="495.0" layoutY="23.0" prefHeight="53.0" prefWidth="376.0">
          <children>
-            <ImageView fitHeight="53.0" fitWidth="376.0" layoutX="40.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="progressbar" fitHeight="69.0" fitWidth="239.0" layoutX="40.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../main/resources/ProgressBar.png" />
+                  <Image url="@../main/resources/progress3.png" />
                </image>
             </ImageView>
          </children>
@@ -206,12 +206,13 @@
       <Rectangle fx:id="Gameover" arcHeight="5.0" arcWidth="5.0" fill="#f7f7f700" height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="189.0" />
         <AnchorPane id="plantPanel" fx:id="sidemenu" layoutX="-4.0" layoutY="-2.0" prefHeight="722.0" prefWidth="224.0">
          <children>
-            <Button id="sunflower_btn" fx:id="sunflower_btn" layoutX="23.0" layoutY="151.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-1" stylesheets="@../main/resources/styles/styles.css" />
-            <Button id="peashooter_btn" fx:id="peashooter_btn" layoutX="23.0" layoutY="264.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-2" stylesheets="@../main/resources/styles/styles.css" />
-            <Button id="walnut_btn" fx:id="walnut_btn" layoutX="23.0" layoutY="378.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="138.0" styleClass="sidebar-button-3" stylesheets="@../main/resources/styles/styles.css" />
-            <Button id="potato_btn" fx:id="potato_btn" layoutX="23.0" layoutY="498.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-4" stylesheets="@../main/resources/styles/styles.css" />
+            <Button id="sunflower_btn" fx:id="sunflower_btn" layoutX="23.0" layoutY="93.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-1" stylesheets="@../main/resources/styles/styles.css" />
+            <Button id="peashooter_btn" fx:id="peashooter_btn" layoutX="23.0" layoutY="209.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-2" stylesheets="@../main/resources/styles/styles.css" />
+            <Button id="walnut_btn" fx:id="walnut_btn" layoutX="23.0" layoutY="324.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="138.0" styleClass="sidebar-button-3" stylesheets="@../main/resources/styles/styles.css" />
+            <Button id="potato_btn" fx:id="potato_btn" layoutX="23.0" layoutY="448.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-4" stylesheets="@../main/resources/styles/styles.css" />
+            <Button id="potato_btn" fx:id="cherry_btn" layoutX="23.0" layoutY="569.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-cherry" stylesheets="@../main/resources/styles/styles.css" />
          </children></AnchorPane>
-      <AnchorPane fx:id="losescreen" prefHeight="722.0" prefWidth="1280.0" stylesheets="@../main/resources/styles/styles.css" visible="false">
+      <AnchorPane fx:id="losescreen" disable="true" prefHeight="722.0" prefWidth="1280.0" stylesheets="@../main/resources/styles/styles.css" visible="false">
          <children>
             <ImageView fx:id="loseimg" fitHeight="720.0" fitWidth="721.0" layoutX="336.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
@@ -225,7 +226,7 @@
             <String fx:value="losescreen" />
          </styleClass>
       </AnchorPane>
-      <AnchorPane fx:id="winscreen" prefHeight="722.0" prefWidth="1280.0" styleClass="winscreen" stylesheets="@../main/resources/styles/styles.css" visible="false">
+      <AnchorPane fx:id="winscreen" disable="true" prefHeight="722.0" prefWidth="1280.0" styleClass="winscreen" stylesheets="@../main/resources/styles/styles.css" visible="false">
          <children>
             <ImageView fx:id="winimg" fitHeight="720.0" fitWidth="721.0" layoutX="279.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>

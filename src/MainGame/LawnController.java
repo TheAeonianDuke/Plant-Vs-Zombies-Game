@@ -34,7 +34,7 @@ public class LawnController implements Initializable {
     volatile private Timeline timeline_setup;
     volatile private Timeline timeline_sun;
     Random get_random = new Random();
-    volatile private int[] buttonSeed = new int[4];
+    volatile private int[] buttonSeed = new int[5];
 
     @FXML
     private Pane Lawn;
@@ -43,8 +43,8 @@ public class LawnController implements Initializable {
     private AnchorPane winscreen,losescreen;
 
     @FXML
-    private Button peashooter_btn, sunflower_btn, walnut_btn, potato_btn, winbtn,losebtn;
-    
+    private Button peashooter_btn, sunflower_btn, walnut_btn, potato_btn, winbtn,losebtn,cherry_btn;
+
     @FXML
     private Rectangle Gameover;
 
@@ -186,7 +186,7 @@ public class LawnController implements Initializable {
     public void gameover_scene()
     {
         // TO-DO //
-        System.out.println("GAMEOVER");
+//        System.out.println("GAMEOVER");
         losescreen.toFront();
         loseimg.toFront();
         losebtn.toFront();
@@ -216,7 +216,7 @@ public class LawnController implements Initializable {
                 }
             }
             for (Default_Zombie zombie : Zombies_Wave_1) {
-                zombie.moveZombie(get_random.nextInt(25)+ 15 , 1280 + get_random.nextInt(20));
+                zombie.moveZombie(get_random.nextInt(5)+ 5 , 1280 + get_random.nextInt(20));
             }
         }
     }
@@ -229,7 +229,7 @@ public class LawnController implements Initializable {
                 }
             }
             for (Default_Zombie zombie : Zombies_Wave_2) {
-                zombie.moveZombie(get_random.nextInt(25)+ 15 , 1280 + get_random.nextInt(20));
+                zombie.moveZombie(get_random.nextInt(5)+ 5 , 1280 + get_random.nextInt(20));
             }
         }
     }
@@ -241,7 +241,7 @@ public class LawnController implements Initializable {
                 }
             }
             for (Default_Zombie zombie : Zombies_Wave_3) {
-                zombie.moveZombie(get_random.nextInt(25)+ 15 , 1280 + get_random.nextInt(20));
+                zombie.moveZombie(get_random.nextInt(5)+ 5 , 1280 + get_random.nextInt(20));
             }
         }
     }
@@ -368,6 +368,14 @@ public class LawnController implements Initializable {
             }
             event.consume();
         });
+        cherry_btn.setOnMousePressed(event -> {
+            System.out.println("cherry");
+            cherry_btn.setId("cherry_btn");
+            for (int i =0 ; i<45; i++) {
+                DragOver(cherry_btn,TilePanes[i], peashooter_initX,peashooter_initY, sidemenu);
+            }
+            event.consume();
+        });
 
 
 //        System.out.println(Plants_List.size());
@@ -432,6 +440,9 @@ public class LawnController implements Initializable {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue)
                 {
+//                    System.out.println(obj1 instanceof  Cherry_Bomb);
+
+
                     if(obj1 instanceof PotatoMine)
                     {
                         obj1.setDead(true);
@@ -440,21 +451,110 @@ public class LawnController implements Initializable {
                         obj2.getZombie_img().setVisible(false);
                         obj1.get_main_img().setY(1000);
                         obj2.getZombie_img().setY(1000);
+                        obj2.setHealth(0);
+                        obj2.setDead(true);
+                        try {
+                            obj2.getMovezombie().stop();
+                            Lawn.getChildren().remove(obj2.getZombie_img());
+                            obj2.getZombie_img().setY(-1000);
+                        }catch (NullPointerException e){}
+
                         if(Zombies_Wave_1.contains(obj2))
                         {
                             Zombies_Wave_1.remove(obj2);
+                            if(Zombies_Wave_1.size()==0)
+                            {
+                                releaseWave_2();
+                            }
                         }
                         else if(Zombies_Wave_2.contains(obj2))
                         {
                             Zombies_Wave_2.remove(obj2);
+                            if(Zombies_Wave_2.size()==0)
+                            {
+                                releaseWave_3();
+                            }
                         }
                         else if(Zombies_Wave_3.contains(obj2))
                         {
                             Zombies_Wave_3.remove(obj2);
+                            if(Zombies_Wave_3.size()==0)
+                            {
+                                return; // Throws LevelClearedException
+                            }
                         }
-
                     }
-//                    System.out.println("collision zombies");
+                    else {
+                        obj2.getMovezombie().pause();
+                        PvZFightTimer(obj1, obj2);
+                    }
+                }
+                else{
+                }
+            }
+        });
+    }
+
+    private void collisionBombZombie(Plants obj1, Default_Zombie obj2)
+    {
+        ObservableBooleanValue collision= Bindings.createBooleanBinding(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                try {
+                    return obj1.get_main_img().getBoundsInParent().intersects(obj2.getZombie_img().getBoundsInParent());
+                }catch (NullPointerException e){return null;}
+            }
+        }, obj1.get_main_img().boundsInParentProperty(),obj2.getZombie_img().boundsInParentProperty());
+        collisions_list.add(collision);
+        collision.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue)
+                {
+                    System.out.println(obj1 instanceof  Cherry_Bomb);
+
+
+                    if(obj1 instanceof Cherry_Bomb)
+                    {
+                        obj1.setDead(true);
+                        obj2.setDead(true);
+                        obj1.get_main_img().setVisible(false);
+                        obj2.getZombie_img().setVisible(false);
+                        obj1.get_main_img().setY(1000);
+                        obj2.getZombie_img().setY(1000);
+                        obj2.setHealth(0);
+                        obj2.setDead(true);
+                        try {
+                            obj2.getMovezombie().stop();
+                            Lawn.getChildren().remove(obj2.getZombie_img());
+                            obj2.getZombie_img().setY(-1000);
+                        }catch (NullPointerException e){}
+
+                        if(Zombies_Wave_1.contains(obj2))
+                        {
+                            Zombies_Wave_1.remove(obj2);
+                            if(Zombies_Wave_1.size()==0)
+                            {
+                                releaseWave_2();
+                            }
+                        }
+                        else if(Zombies_Wave_2.contains(obj2))
+                        {
+                            Zombies_Wave_2.remove(obj2);
+                            if(Zombies_Wave_2.size()==0)
+                            {
+                                releaseWave_3();
+                            }
+                        }
+                        else if(Zombies_Wave_3.contains(obj2))
+                        {
+                            Zombies_Wave_3.remove(obj2);
+                            if(Zombies_Wave_3.size()==0)
+                            {
+                                return; // Throws LevelClearedException
+                            }
+                        }
+                    }
                     else {
                         obj2.getMovezombie().pause();
                         PvZFightTimer(obj1, obj2);
@@ -487,17 +587,37 @@ public class LawnController implements Initializable {
                     obj1.triggerLawnMower();
                     obj2.setDead(true);
                     obj2.getZombie_img().setY(1000);
+                    obj2.setHealth(0);
+                    obj2.setDead(true);
+                    try {
+                        obj2.getMovezombie().stop();
+                        Lawn.getChildren().remove(obj2.getZombie_img());
+                        obj2.getZombie_img().setY(-1000);
+                    }catch (NullPointerException e){}
+
                     if(Zombies_Wave_1.contains(obj2))
                     {
                         Zombies_Wave_1.remove(obj2);
+                        if(Zombies_Wave_1.size()==0)
+                        {
+                            releaseWave_2();
+                        }
                     }
                     else if(Zombies_Wave_2.contains(obj2))
                     {
                         Zombies_Wave_2.remove(obj2);
+                        if(Zombies_Wave_2.size()==0)
+                        {
+                            releaseWave_3();
+                        }
                     }
                     else if(Zombies_Wave_3.contains(obj2))
                     {
                         Zombies_Wave_3.remove(obj2);
+                        if(Zombies_Wave_3.size()==0)
+                        {
+                            return; // Throws LevelClearedException
+                        }
                     }
                 }
                 else{
@@ -616,6 +736,12 @@ public class LawnController implements Initializable {
             Lawn.getChildren().add(plant.get_main_img());
         }
 
+        else if(elem.getId().equals("cherry_btn"))
+        {
+            plant=new Cherry_Bomb(200,150,200,false,null,5);
+            Lawn.getChildren().add(plant.get_main_img());
+        }
+
         ImageView peashooter_img=plant.get_main_img();
         ImageView pea_img=plant.get_other_img();
 
@@ -688,8 +814,10 @@ public class LawnController implements Initializable {
                     buttonSeed[1] = 5;
                 else if(elem == walnut_btn)
                     buttonSeed[2] = 10;
-                else
+                else if(elem == potato_btn)
                     buttonSeed[3] = 10;
+                else
+                    buttonSeed[4] = 15;
                 peashooter_img2.setVisible(true);
                 finalPlant.setTilePlaced(tile);
                 Plants_List.add(finalPlant);
@@ -757,6 +885,24 @@ public class LawnController implements Initializable {
                                 for(Default_Zombie zombie : Zombies_Wave_3)
                                 {
                                     collisionPlantZombie(plant_img,zombie);
+                                }
+
+                                if(plant_img instanceof Cherry_Bomb)
+                                {
+                                    for(Default_Zombie zombie : Zombies_Wave_1)
+                                    {
+                                        collisionBombZombie(plant_img,zombie);
+                                    }
+
+                                    for(Default_Zombie zombie : Zombies_Wave_2)
+                                    {
+                                        collisionBombZombie(plant_img,zombie);
+                                    }
+
+                                    for(Default_Zombie zombie : Zombies_Wave_3)
+                                    {
+                                        collisionBombZombie(plant_img,zombie);
+                                    }
                                 }
                             }
                         }
@@ -948,14 +1094,14 @@ public class LawnController implements Initializable {
         public void handle(ActionEvent actionEvent) {
             createPlants();
             if(Zombies_Wave_1.size() == 0)
-                System.out.println("GameWin");
-                releaseWave_2();
+//                System.out.println("GameWin");
+//                releaseWave_2();
             if(Zombies_Wave_1.size() == 0 && Zombies_Wave_2.size()==0)
-                System.out.println("GameWin");
-                releaseWave_3();
+//                System.out.println("GameWin");
+//                releaseWave_3();
             if(Zombies_Wave_1.size() == 0 && Zombies_Wave_2.size()==0 && Zombies_Wave_3.size()==0)
             {
-                System.out.println("GameWin");
+//                System.out.println("GameWin");
                 Winscreen();
 
             }
@@ -1019,6 +1165,8 @@ public class LawnController implements Initializable {
         winscreen.toFront();
         winimg.toFront();
         winbtn.toFront();
+        winscreen.setDisable(false);
+        winbtn.setDisable(false);
         winscreen.setVisible(true);
         winimg.setVisible(true);
         winbtn.setVisible(true);
@@ -1044,11 +1192,11 @@ public class LawnController implements Initializable {
         createLawnmower();
         setupTimelines();
         setupTime();
-        createWaves(1,0,0);
+        createWaves(5,5,5);
         releaseWave_1();
         generateSun();
         suntimer();
-        gameover_collision();
+//        gameover_collision();
         System.out.println(collisions_list);
 
 //        triggerLawnMower();

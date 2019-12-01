@@ -24,7 +24,7 @@ public class Default_Zombie {
 
     // Move Zombie Anim //
     public void moveZombie(int duration,int xPos) {
-        movezombie = new TranslateTransition(Duration.seconds(duration), getZombie_img());
+        movezombie = new TranslateTransition(Duration.seconds(15), getZombie_img());
         movezombie.setFromX(xPos);
         movezombie.setToX(-1280);
         movezombie.setCycleCount(1);
