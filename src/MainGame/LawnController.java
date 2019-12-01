@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
@@ -49,7 +50,7 @@ public class LawnController implements Initializable {
     private Rectangle Gameover;
 
     @FXML
-    private ImageView peashooter_anim, sunflower,walnut, potato,suncounter,winimg,loseimg;
+    private ImageView peashooter_anim, sunflower,walnut, potato,suncounter,winimg,loseimg,progressbar;
 
     @FXML
     private Pane menu_panel;
@@ -1096,12 +1097,15 @@ public class LawnController implements Initializable {
             if(Zombies_Wave_1.size() == 0)
 //                System.out.println("GameWin");
 //                releaseWave_2();
+
             if(Zombies_Wave_1.size() == 0 && Zombies_Wave_2.size()==0)
 //                System.out.println("GameWin");
 //                releaseWave_3();
+                progressbar.setImage(new Image("main/resources/progress2.png"));
             if(Zombies_Wave_1.size() == 0 && Zombies_Wave_2.size()==0 && Zombies_Wave_3.size()==0)
             {
 //                System.out.println("GameWin");
+                progressbar.setImage(new Image("main/resources/progress1.png"));
                 Winscreen();
 
             }
