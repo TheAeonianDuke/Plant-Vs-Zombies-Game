@@ -1,7 +1,10 @@
 package MainGame;
 
+import javafx.animation.TranslateTransition;
+import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 public abstract class Plants {
     private static int idgen=0;

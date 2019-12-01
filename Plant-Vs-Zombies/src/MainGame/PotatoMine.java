@@ -16,6 +16,8 @@ public class PotatoMine extends Plants
         potato_img.preserveRatioProperty();
     }
 
+
+
     public void setTilePlaced(AnchorPane tilePlaced) {
         TilePlaced = tilePlaced;
     }

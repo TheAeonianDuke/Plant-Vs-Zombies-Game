@@ -6,7 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 
-public class PeaShooter extends Plants {
+public class PeaShooter extends Plants{
     private static final String plant_id = "Peashooter";
     private TranslateTransition movepea;
     private final ImageView peashooter_img = new ImageView("main/resources/pea_shooter.gif");

@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="Lawn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="1" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainGame.LawnController">
+<Pane fx:id="Lawn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="1" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainGame.LawnController2">
     <children>
         <ImageView id="lawnBackground" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -206,7 +206,7 @@
         <Rectangle fx:id="Gameover" arcHeight="5.0" arcWidth="5.0" fill="#f7f7f700" height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="189.0" />
         <AnchorPane id="plantPanel" fx:id="sidemenu" layoutX="-4.0" layoutY="-2.0" prefHeight="722.0" prefWidth="224.0">
             <children>
-                <Button id="sunflower_btn" fx:id="sunflower_btn" disable="true" layoutX="23.0" layoutY="93.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-1" stylesheets="@../main/resources/styles/styles.css" />
+                <Button id="sunflower_btn" fx:id="sunflower_btn" layoutX="23.0" layoutY="93.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-1" stylesheets="@../main/resources/styles/styles.css" />
                 <Button id="peashooter_btn" fx:id="peashooter_btn" layoutX="23.0" layoutY="209.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-2" stylesheets="@../main/resources/styles/styles.css" />
                 <Button id="walnut_btn" fx:id="walnut_btn" disable="true" layoutX="23.0" layoutY="324.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="138.0" styleClass="sidebar-button-3" stylesheets="@../main/resources/styles/styles.css" />
                 <Button id="potato_btn" fx:id="potato_btn" disable="true" layoutX="23.0" layoutY="448.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="138.0" styleClass="sidebar-button-4" stylesheets="@../main/resources/styles/styles.css" />
@@ -234,7 +234,7 @@
                     </image>
                 </ImageView>
                 <Button fx:id="winbtn" focusTraversable="false" layoutX="410.0" layoutY="612.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="230.0" styleClass="winbutton" stylesheets="@../main/resources/styles/styles.css" visible="false" />
-            <Button fx:id="winbtn2" focusTraversable="false" layoutX="681.0" layoutY="612.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="230.0" styleClass="winbutton2" stylesheets="@../main/resources/styles/styles.css" visible="false" />
+                <Button fx:id="winbtn2" focusTraversable="false" layoutX="681.0" layoutY="612.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="230.0" styleClass="winbutton2" stylesheets="@../main/resources/styles/styles.css" visible="false" />
             </children>
         </AnchorPane>
         <StackPane fx:id="menu_panel" layoutX="450.0" layoutY="55.0" prefHeight="547.0" prefWidth="468.0" styleClass="menu_panel" stylesheets="@../main/resources/styles/styles.css" visible="false">

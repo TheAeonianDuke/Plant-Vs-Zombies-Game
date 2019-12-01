@@ -12,29 +12,29 @@ public class ChooseLevelController {
     @FXML
     private Pane chooseLevel;
 
-    public void goToLevelOne(ActionEvent actionEvent)
-    {
-        System.out.println("Level 1");
+    public void goToLevelOne(ActionEvent actionEvent) throws IOException {
+        Pane pane = FXMLLoader.load(getClass().getResource("Lawn.fxml"));
+        chooseLevel.getChildren().setAll(pane);
     }
 
-    public void goToLevelTwo(ActionEvent actionEvent)
-    {
-        System.out.println("Level 2");
+    public void goToLevelTwo(ActionEvent actionEvent) throws IOException {
+        Pane pane = FXMLLoader.load(getClass().getResource("Lawn2.fxml"));
+        chooseLevel.getChildren().setAll(pane);
     }
 
-    public void goToLevelThree(ActionEvent actionEvent)
-    {
-        System.out.println("Level 3");
+    public void goToLevelThree(ActionEvent actionEvent) throws IOException {
+        Pane pane = FXMLLoader.load(getClass().getResource("Lawn3.fxml"));
+        chooseLevel.getChildren().setAll(pane);
     }
 
-    public void goToLevelFour(ActionEvent actionEvent)
-    {
-        System.out.println("Level 4");
+    public void goToLevelFour(ActionEvent actionEvent) throws IOException {
+        Pane pane = FXMLLoader.load(getClass().getResource("Lawn4.fxml"));
+        chooseLevel.getChildren().setAll(pane);
     }
 
-    public void goToLevelFive(ActionEvent actionEvent)
-    {
-        System.out.println("Level 4");
+    public void goToLevelFive(ActionEvent actionEvent) throws IOException {
+        Pane pane = FXMLLoader.load(getClass().getResource("Lawn5.fxml"));
+        chooseLevel.getChildren().setAll(pane);
     }
 
     public void goToMainMenu(ActionEvent actionEvent) throws IOException {
