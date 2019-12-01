@@ -1,60 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Seed packed disable with 5s timeout">
-      <change afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController$7.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController$8.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController$ButtonHide.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Cherry_Bomb.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Lawn2.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Lawn3.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Lawn4.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/Lawn5.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/LawnController2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/LawnController3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/LawnController4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/LawnController5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/PlantFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainGame/RandomGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cherrybtn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cherrygif.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/exit_to_menu - Copy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameover.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/next_level.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/progress1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/progress2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/progress3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/shovel.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/you-win.png" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Final Game!!!">
+      <change afterPath="$PROJECT_DIR$/../2018060_2018211.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/pvz.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/Lawn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/Lawn.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/LawnController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/MainMenu.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/MainMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/MainMenuController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/SplashScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/MainGame/SplashScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantVsZombies/main/resources/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantVsZombies/main/resources/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/ChooseLevel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/ChooseLevel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/ChooseLevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/ChooseLevelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/FallSun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/FallSun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/GameWinException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/Lawn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Lawn.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/LawnController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/LawnController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/LawnMower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/LawnMower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/LawnMowerException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/LevelClearException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/MainMenu.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainGame/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/MainMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/MenuBtn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/MenuBtn.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/PeaShooter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/PeaShooter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/PlantDiedException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/Plants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/Plants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/PotatoMine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/PotatoMine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/SplashScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/SplashScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/Sun.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/SunFlower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame/SunFlower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainGame/ZombieKilledException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/styles.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -437,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575133550547</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Final Game!!!">
+      <created>1575168361651</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1575168361651</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,6 +433,7 @@
     <MESSAGE value="Validation" />
     <MESSAGE value="Seed packet disable" />
     <MESSAGE value="Seed packed disable with 5s timeout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Seed packed disable with 5s timeout" />
+    <MESSAGE value="Final Game!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final Game!!!" />
   </component>
 </project>
