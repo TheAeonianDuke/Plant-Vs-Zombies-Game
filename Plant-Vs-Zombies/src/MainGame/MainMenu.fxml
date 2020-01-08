@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane id="mainMenu" fx:id="mainMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainGame.MainMenuController">
+   <children>
+      <ImageView id="mainMenuBackground" fitHeight="720.0" fitWidth="1280.0">
+         <image>
+            <Image url="@../main/resources/mainmenu.jpg" />
+         </image>
+      </ImageView>
+      <Button id="loadButton" fx:id="loadButton" alignment="CENTER" layoutX="299.0" layoutY="457.0" mnemonicParsing="false" onAction="#loadGame" prefHeight="70.0" prefWidth="210.0" rotate="-10.0" stylesheets="@../main/resources/styles/styles.css" text="LOAD GAME" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Turtles" size="29.0" />
+         </font></Button>
+      <Button id="playButton" fx:id="playButton" alignment="CENTER" layoutX="259.0" layoutY="328.0" mnemonicParsing="false" onAction="#playGame" prefHeight="109.0" prefWidth="247.0" rotate="-7.0" stylesheets="@../main/resources/styles/styles.css" text="play game" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Turtles" size="41.0" />
+         </font>
+      </Button>
+      <Button id="chooseButton" fx:id="chooseButton" alignment="TOP_LEFT" layoutX="523.0" layoutY="372.0" mnemonicParsing="false" onAction="#chooseLevel" prefHeight="101.0" prefWidth="165.0" rotate="-13.0" stylesheets="@../main/resources/styles/styles.css" text=" choose&#10; level" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font name="Turtles" size="27.0" />
+         </font>
+      </Button>
+      <Button id="exitButton" fx:id="exitButton" alignment="TOP_CENTER" layoutX="907.0" layoutY="414.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="29.0" prefWidth="144.0" rotate="3.0" stylesheets="@../main/resources/styles/styles.css" text="exit" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font name="Turtles" size="38.0" />
+         </font>
+      </Button>
+      <Text layoutX="413.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Player Name" textAlignment="CENTER" wrappingWidth="156.7734375">
+         <font>
+            <Font name="Turtles" size="16.0" />
+         </font>
+      </Text>
+      <TextField id="username" fx:id="username" alignment="CENTER" layoutX="413.0" layoutY="220.0" prefHeight="29.0" prefWidth="146.0" promptText="Player Name">
+         <font>
+            <Font name="Turtles" size="12.0" />
+         </font>
+      </TextField>
+   </children>
+</Pane>
